@@ -56,6 +56,6 @@ export function parseUserId(jwtToken: string): string {
   function stringToPEM(cert: string): string {
     // @ts-ignore: Object is possibly 'null'
     const newCert: string = cert.match(/.{1,64}/g).join('\n');
-    cert = `-----BEGIN CERTIFICATE-----\n${cert}\n-----END CERTIFICATE-----\n`;
+    cert = `-----BEGIN CERTIFICATE-----\n${newCert}\n-----END CERTIFICATE-----\n`;
     return cert;
   }
