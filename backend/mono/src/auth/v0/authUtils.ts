@@ -19,7 +19,7 @@ export function parseUserId(jwtToken: string): string {
     return decodedJwt.sub
   }
 
-  async function verifyToken(authHeader: string): Promise<JwtPayload> {
+export async function verifyToken(authHeader: string): Promise<JwtPayload> {
     const token = getToken(authHeader)
     const jwt: Jwt = decode(token, { complete: true }) as Jwt
     const rawCert: string = await matchToKey(jwt.header.kid)
