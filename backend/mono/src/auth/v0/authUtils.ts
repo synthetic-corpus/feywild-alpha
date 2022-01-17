@@ -4,7 +4,7 @@ import { JwtPayload, Jwt } from '../interfaces'
 import { config } from '../../config'
 import Axios from 'axios'
 
-export function getUserId(req: Request) {
+export function getUserId(req: Request): string | undefined {
     const authorization = req.headers.authorizataion as string
     if(authorization){
         const split: string[] = authorization.split(" ")

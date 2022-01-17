@@ -1,4 +1,7 @@
 import {Router, Request, Response} from 'express';
+import { getUserId } from '../../auth/v0/authUtils';
+import * as UserLogic from '../../02BusinessLogic/user.logic'
+import { HttpReplyMessage } from '../../interfaces/responses.interface';
 
 const router: Router = Router()
 
@@ -7,22 +10,56 @@ router.get('/health', async (req: Request, res: Response) => {
 })
 
 router.post('/', async (req: Request, res: Response) => {
-    res.status(200).send({reply:'POST method is up'});
+    const id = getUserId(req) || ''
+    if(!id){
+        console.error(`Could not get user ID from Request  ${req.headers}`) 
+        return res.status(500).send("Problem with user identification.!")
+    }
+    UserLogic.createUser(id)
+        .then((reply: HttpReplyMessage)=>{
+            const status: number = reply.code || 500
+            res.status(status).send(reply)
+        })
 })
 
-router.get('/:id', async (req: Request, res: Response) => {
-    const id = req.params.id
-    res.status(200).send({reply: `GET a user is up with ID of ${id}`})
+router.get('/self', async (req: Request, res: Response) => {
+    const id = getUserId(req) || ''
+    if(!id){
+        console.error(`Could not get user ID from Request  ${req.headers}`) 
+        return res.status(500).send("Problem with user identification.!")
+    }
+    UserLogic.getUser(id)
+        .then((reply: HttpReplyMessage)=>{
+            const status: number = reply.code || 500
+            res.status(status).send(reply)
+        })
 })
 
-router.patch('/:id', async (req: Request, res: Response) => {
-    const id = req.params.id
-    res.status(200).send({reply: `PATCH is up with user ID of ${id},`})
+router.patch('/self', async (req: Request, res: Response) => {
+    const id = getUserId(req) || ''
+    if(!id){
+        console.error(`Could not get user ID from Request  ${req.headers}`) 
+        return res.status(500).send("Problem with user identification.!")
+    }
+    const patch = req.body
+    UserLogic.patchUser(id,patch)
+        .then((reply: HttpReplyMessage)=>{
+            const status: number = reply.code || 500
+            res.status(status).send(reply)
+        })
 })
 
-router.delete('/:id', async (req: Request, res: Response) => {
-    const id = req.params.id
-    res.status(200).send({reply: `DELETE is up with ID of ${id}`})
+router.delete('/self', async (req: Request, res: Response) => {
+    const id = getUserId(req) || ''
+    if(!id){
+        console.error(`Could not get user ID from Request  ${req.headers}`) 
+        return res.status(500).send("Problem with user identification.!")
+    }
+    UserLogic.deleteUser(id)
+        .then((reply: HttpReplyMessage)=>{
+            const status: number = reply.code || 500
+            res.status(status).send(reply)
+        })
 })
 
 export const UserRouterV0: Router = router

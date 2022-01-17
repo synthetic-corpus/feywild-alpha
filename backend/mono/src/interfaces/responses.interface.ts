@@ -1,5 +1,5 @@
 export interface HttpReplyMessage {
-    code: Number,
+    code: number,
     message?: String,
     data?: Object,
     error?: Boolean

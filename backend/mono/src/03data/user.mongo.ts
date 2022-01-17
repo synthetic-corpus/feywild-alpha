@@ -86,7 +86,7 @@ export async function updateUser(userId: String, userPatch: UserPatch): Promise<
     return reply;
 }
 
-export async function deletedUser(userId: String): Promise<HttpReplyMessage>{
+export async function deleteUser(userId: String): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage
     try{
         const deletedUser = await UserModel.findByIdAndDelete(userId);
@@ -106,7 +106,7 @@ export async function deletedUser(userId: String): Promise<HttpReplyMessage>{
         console.error(`error updating user! \n ${e}`)
         reply = {
             code: 500,
-            message: "Unable to Deleted User!"
+            message: "Unable to Delete User!"
         }
     }
     return reply
