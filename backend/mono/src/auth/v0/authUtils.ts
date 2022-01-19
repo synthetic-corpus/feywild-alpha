@@ -5,9 +5,10 @@ import { config } from '../../config'
 import Axios from 'axios'
 
 export function getUserId(req: Request): string | undefined {
-    const authorization = req.headers.authorizataion as string
+    const authorization = req.headers.authorization as string
+    console.log("Auth is ",authorization)
     if(authorization){
-        const split: string[] = authorization.split(" ")
+        const split: string[] = authorization.split(/[ %]+/)
         const jwtToken = split[1]
         return parseUserId(jwtToken)
     }
