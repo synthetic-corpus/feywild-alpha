@@ -6,6 +6,6 @@ export interface User {
 }
 
 export interface UserPatch {
-    name: String,
-    tier: Number
+    name?: String,
+    tier?: Number
 }
