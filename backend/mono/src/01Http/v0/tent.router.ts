@@ -1,10 +1,8 @@
 import {Router, Request, Response} from 'express';
-import { getUserId } from '../../auth/v0/authUtils';
 import * as TentLogic from '../../02BusinessLogic/tent.logic'
 import { Tent, TentPatch } from '../../interfaces/tent.interface'
 import { HttpReplyMessage } from '../../interfaces/responses.interface';
 import { requireAuth } from '../../auth/v0/require.auth';
-import { stringify } from 'querystring';
 
 
 const router: Router = Router()
@@ -14,13 +12,9 @@ router.get('/health', async (req: Request, res: Response) => {
 })
 
 router.post('/', requireAuth, async (req: Request, res: Response) => {
-    const id = getUserId(req) || ''
-    if(!id){
-        console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
-        return res.status(500).send("Problem with user identification.!")
-    }
+    const user_id = req.params.user_id
     const newTent: Tent = req.body
-    const reply: HttpReplyMessage = await TentLogic.createTent(id,newTent)
+    const reply: HttpReplyMessage = await TentLogic.createTent(user_id,newTent)
     return res.status(reply.code).send(reply)
 })
 

@@ -30,7 +30,6 @@ export async function retrieveTent(userId: String, TentId: String): Promise<Http
     let reply: HttpReplyMessage
     try{
         const thisTent = await TentModel.findById(TentId)
-        console.log("This tent is ",JSON.stringify(thisTent))
         if(thisTent){
             if (userId === thisTent._user_id.toString()){
                 reply = {code: 200,message: "retrieved character tent",data: thisTent}
