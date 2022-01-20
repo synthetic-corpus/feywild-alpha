@@ -26,12 +26,8 @@ router.post('/', requireAuth, async (req: Request, res: Response) => {
 
 router.get('/:id', requireAuth, async (req: Request, res: Response) => {
     const tent_id = req.params.id
-    const id = getUserId(req) || ''
-    if(!id){
-        console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
-        return res.status(500).send("Problem with user identification.!")
-    }
-    const reply: HttpReplyMessage = await TentLogic.getTent(id,tent_id)
+    const user_id = req.user_id
+    const reply: HttpReplyMessage = await TentLogic.getTent(user_id,tent_id)
     return res.status(reply.code).send(reply)
 })
 

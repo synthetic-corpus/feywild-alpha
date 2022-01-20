@@ -7,16 +7,12 @@ MongoDB.then(
     (err)=>{console.error(`Failed to Connect to Database! \n ${err}`)}
 )
 
-export async function convertUserId(userId: String){
+export async function convertUserId(userId: String): Promise<String>{
     try{
         const mongoUser = await UserModel.findOne({_authId: userId})
-        return mongoUser._id
+        return mongoUser._id.toString()
     }catch(e){
         console.error(`Could Not Convert an ID! ${e}`)
-        const message: HttpReplyMessage = {
-            code: 500,
-            message: "Could not convert id from Token to Database index!"
-        }
-        return message
+        return ''
     }
 }

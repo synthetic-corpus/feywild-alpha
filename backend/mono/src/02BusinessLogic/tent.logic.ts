@@ -2,6 +2,7 @@ import * as Tent from '../interfaces/tent.interface';
 import * as DB from '../03data/tent.mongo';
 import { convertUserId } from '../03data/convertUserId';
 import { HttpReplyMessage } from '../interfaces/responses.interface'
+import { ObjectId } from 'mongoose';
 
 export async function createTent(userId: String, tentPost: Tent.Tent): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(userId)
@@ -10,8 +11,9 @@ export async function createTent(userId: String, tentPost: Tent.Tent): Promise<H
     return reply
 }
 
-export async function getTent(userId: String, tentId: String): Promise<HttpReplyMessage>{
+export async function getTent(userId: string, tentId: string): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(userId)
+    console.log("Converted Id = ",db_uuid)
     const reply: HttpReplyMessage = await DB.retrieveTent(db_uuid, tentId)
     return reply
 }

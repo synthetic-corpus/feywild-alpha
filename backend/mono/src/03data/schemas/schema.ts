@@ -15,7 +15,7 @@ const tentSchema = new mongoose.Schema({
     spell_dc: {type: Number},
     passive_perception: {type: Number},
     ac: {type: Number, required: true},
-    notes: {type: String, required: true}
+    notes: {type: String}
 })
 
 export const UserModel = mongoose.model('User',userSchema);

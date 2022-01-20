@@ -4,6 +4,7 @@ import { HttpReplyMessage } from '../interfaces/responses.interface'
 import { TentModel } from './schemas/schema'
 import { Tent, TentPatch } from "../interfaces/tent.interface";
 
+
 MongoDB.then(
     () => {console.log("Connected to Database")},
     (err)=>{console.error(`Failed to Connect to Database! \n ${err}`)}
@@ -29,11 +30,12 @@ export async function retrieveTent(userId: String, TentId: String): Promise<Http
     let reply: HttpReplyMessage
     try{
         const thisTent = await TentModel.findById(TentId)
+        console.log("This tent is ",JSON.stringify(thisTent))
         if(thisTent){
-            if (userId != thisTent._user_id){
-                reply = {code: 403,message: "You are not authorized to view this resource!"}
-            }else{
+            if (userId === thisTent._user_id.toString()){
                 reply = {code: 200,message: "retrieved character tent",data: thisTent}
+            }else{
+                reply = {code: 403,message: "You are not authorized to view this resource!"}
             }
         }else{
             reply = {code: 404,message: "No Tent found!"}
