@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
 import {NextFunction} from 'connect'
-import { verifyToken } from './authUtils'
+import { verifyToken, getUserId } from './authUtils'
 import { JwtPayload } from '../interfaces';
 
 
@@ -18,6 +18,8 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     try{
         // If it Verified, go on to the actual HTTP call with Next
         const jwtToken: JwtPayload = await verifyToken(req.headers.authorization)
+        const user_id: string = getUserId(req) || '' // For ease of getting User_id for the Database.
+        req.params.user_id = user_id
         return next()
     } catch(e){
         // if Not Verified, through a 403

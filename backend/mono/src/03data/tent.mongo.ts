@@ -50,7 +50,7 @@ export async function retrieveTent(userId: String, TentId: String): Promise<Http
     return reply
 }
 
-export async function updateTent(userId: String, tentId: string, tentPatch: TentPatch): Promise<HttpReplyMessage>{
+export async function updateTent(userId: String, tentId: String, tentPatch: TentPatch): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage;
     const query = {_id: tentId,_user_id: userId}
     try{
@@ -69,7 +69,7 @@ export async function updateTent(userId: String, tentId: string, tentPatch: Tent
     return reply
 }
 
-export async function deleteUser(userId: String, tentId: String): Promise<HttpReplyMessage>{
+export async function deleteTent(userId: String, tentId: String): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage
     const query = {_id: tentId,_user_id: userId}
     try{
