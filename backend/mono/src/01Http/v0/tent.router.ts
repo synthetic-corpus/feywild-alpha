@@ -41,7 +41,7 @@ router.get('/', requireAuth, async (req: Request, res: Response) => {
 
 router.patch('/:id', requireAuth, async (req: Request, res: Response) => {
     const id = req.params.id
-    const user_id = req.params.user_id
+    const user_id = req.user_id
     const patch: TentPatch = req.body
     const reply = await TentLogic.patchTent(user_id,id,patch)
     return res.status(reply.code).send(reply)

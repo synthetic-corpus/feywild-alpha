@@ -11,23 +11,18 @@ MongoDB.then(
 
 export async function createTent(tent: Tent): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage
-    const newTent = new TentModel(tent)
     try{
-        newTent.save()
+        const newTent = new TentModel(tent)
+        await newTent.save()
+        reply = {code: 201,message: "Tent Created!"}
     }catch(e){
         reply = {
             code: 503,
             message: "Internal server side error" 
         }
         console.error(`Could Not Write user to Database \n ${e}`)
-        return reply
-    }finally{
-        reply = {
-            code: 201,
-            message: "New User Created!"
-        }
-        return reply
     }
+    return reply
 }
 
 export async function retrieveTent(userId: String, TentId: String): Promise<HttpReplyMessage>{

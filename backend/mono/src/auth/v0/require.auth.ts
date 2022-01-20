@@ -2,6 +2,7 @@ import {Request, Response} from 'express'
 import {NextFunction} from 'connect'
 import { verifyToken, getUserId } from './authUtils'
 import { JwtPayload } from '../interfaces';
+import { stringify } from 'querystring';
 
 
 export async function requireAuth(req: Request, res: Response, next: NextFunction) {
@@ -19,7 +20,11 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
         // If it Verified, go on to the actual HTTP call with Next
         const jwtToken: JwtPayload = await verifyToken(req.headers.authorization)
         const user_id: string = getUserId(req) || '' // For ease of getting User_id for the Database.
-        req.params.user_id = user_id
+        if(!user_id){
+            console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
+            return res.status(500).send("Problem with user identification.!")
+        }
+        req.user_id = user_id
         return next()
     } catch(e){
         // if Not Verified, through a 403
