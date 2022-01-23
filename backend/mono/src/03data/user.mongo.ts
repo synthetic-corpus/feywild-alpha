@@ -1,13 +1,6 @@
-import Mongoose from "mongoose";
-import { MongoDB } from "./mongo.db";
 import { HttpReplyMessage } from '../interfaces/responses.interface'
 import { UserModel } from './schemas/schema'
 import { UserPatch } from '../interfaces/user.interface'
-
-MongoDB.then(
-    () => {console.log("Connected to Database")},
-    (err)=>{console.error(`Failed to Connect to Database! \n ${err}`)}
-)
 
 export async function createUser(userId: String): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage

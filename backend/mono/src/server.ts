@@ -8,6 +8,13 @@ import { UserRouterV0 } from './01Http/v0/user.router';
 import { EncounterRouterV0 } from './01Http/v0/encounter.router';
 import { TentRouterV0 } from './01Http/v0/tent.router';
 
+// Database connection derived from DB Layers for decoupling practes
+import { myDatabase, databaseName } from './03data/database'
+
+myDatabase.then(
+    () =>{console.log(`Connected to Database. Currently using: ${databaseName}`)}
+)
+
 const app = express()
 const port = config.port
 

@@ -1,14 +1,7 @@
-//import Mongoose from "mongoose";
-import { MongoDB } from "./mongo.db";
 import { HttpReplyMessage } from '../interfaces/responses.interface'
 import { TentModel } from './schemas/schema'
 import { Tent, TentPatch } from "../interfaces/tent.interface";
 
-
-MongoDB.then(
-    () => {console.log("Connected to Database")},
-    (err)=>{console.error(`Failed to Connect to Database! \n ${err}`)}
-)
 
 export async function createTent(tent: Tent): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage

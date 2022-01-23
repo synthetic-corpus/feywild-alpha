@@ -3,4 +3,5 @@ import {config} from '../config'
 
 const uri = `mongodb+srv://${config.mongoUser}:${config.mongoPass}@${config.mongoAddress}`
 
-export const MongoDB = mongoose.connect(uri);
+export const myDatabase= mongoose.connect(uri);
+export const databaseName: string = 'Mongo Cloud Database';
