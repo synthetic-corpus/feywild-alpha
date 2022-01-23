@@ -26,7 +26,9 @@ router.get('/:id', requireAuth, async (req: Request, res: Response) => {
 })
 
 router.get('/', requireAuth, async (req: Request, res: Response) => {
-    res.status(200).send({reply:'GET ALL method is up', api: 'tent'});
+    const user_id = req.user_id;
+    const reply: HttpReplyMessage = await TentLogic.getAllTents(user_id)
+    return res.status(reply.code).send(reply)
 })
 
 router.patch('/:id', requireAuth, async (req: Request, res: Response) => {

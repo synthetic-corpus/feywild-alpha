@@ -39,6 +39,23 @@ export async function retrieveTent(userId: String, TentId: String): Promise<Http
     return reply
 }
 
+export async function retrieveAllTents(userId: String): Promise<HttpReplyMessage>{
+    let reply: HttpReplyMessage
+    try{
+        const query = {_user_id: userId}
+        const theseTents = await TentModel.find(query)
+        if(theseTents){
+            reply = {code: 202,message: 'Found Tents',data: theseTents}
+        }else{
+            reply = {code: 404,message: "No Tent found!",data: []}
+        }
+    }catch(e){
+        console.log(`Error on retrieving tent at database layer for tent: ${userId} \n ${e}`)
+        reply = {code: 500,message: "Internal Server Error"}
+    }
+    return reply
+}
+
 export async function updateTent(userId: String, tentId: String, tentPatch: TentPatch): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage;
     const query = {_id: tentId,_user_id: userId}
