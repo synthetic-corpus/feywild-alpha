@@ -1,4 +1,7 @@
 import {Router, Request, Response} from 'express';
+import { HarptosCalendarHttp, HarptosUpdate } from '../../interfaces/harptos.interface';
+import { HttpReplyMessage } from '../../interfaces/responses.interface';
+import * as HarptosLogic from '../../02BusinessLogic/harptos.logic'
 
 const router: Router = Router()
 
@@ -7,26 +10,39 @@ router.get('/health', async (req: Request, res: Response) => {
 })
 
 router.post('/', async (req: Request, res: Response) => {
-    res.status(200).send({reply:'POST method is up', calendar: 'harptos'});
+    const user_id = req.user_id;
+    const post: HarptosCalendarHttp = req.body
+    const reply: HttpReplyMessage = await HarptosLogic.createHarptos(user_id,post)
+    return res.status(reply.code).send(reply)
 })
 
 router.get('/:id', async (req: Request, res: Response) => {
-    const id = req.params.id
-    res.status(200).send({reply: `GET ONE is up with ID of ${id}`, calandar: 'Harptos'})
+    const user_id = req.user_id
+    const harptos_id = req.params.id
+    const reply: HttpReplyMessage = await HarptosLogic.getHarptos(user_id,harptos_id)
+    return res.status(reply.code).send(reply)
 })
 
 router.get('/', async (req: Request, res: Response) => {
-    res.status(200).send({reply:'GET ALL method is up', calandar: 'Harptos'});
+    const user_id = req.user_id
+    const reply: HttpReplyMessage = await HarptosLogic.getAllHarptos(user_id)
+    return res.status(reply.code).send(reply)
 })
 
 router.patch('/:id', async (req: Request, res: Response) => {
-    const id = req.params.id
-    res.status(200).send({reply: `PATCH is up with ID of ${id},`, calandar: 'Harptos'})
+    const harptos_id = req.params.id
+    const user_id = req.user_id
+    const harptos_patch: HarptosUpdate = req.body
+    const reply: HttpReplyMessage = await HarptosLogic.updateHarptos(user_id,harptos_id,harptos_patch)
+    return res.status(reply.code).send(reply)
 })
 
 router.delete('/:id', async (req: Request, res: Response) => {
-    const id = req.params.id
-    res.status(200).send({reply: `DELETE is up with ID of ${id}`, calandar: 'Harptos'})
+    const harptos_id = req.params.id
+    const user_id = req.user_id
+    const harptos_patch: HarptosUpdate = req.body
+    const reply: HttpReplyMessage = await HarptosLogic.deleteHarptos(user_id,harptos_id)
+    return res.status(reply.code).send(reply)
 })
 
 export const HarptosRouterV0: Router = router
