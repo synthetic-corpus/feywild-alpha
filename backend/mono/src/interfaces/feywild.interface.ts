@@ -1,12 +1,9 @@
 export interface FeywildCalendar {
-    createdAt: string,
-    feywildID: string,
+    _campaign_id: string,
     feywildName: string,
-    userID: string,
     dilation: Dilation,
     currentSegment: number,
     feySegments: FeywildSegment[],
-    feyImage?: string // name of the image
 }
 
 export interface FeywildSegment {
@@ -34,9 +31,3 @@ In table top games, "2D6+1" means "Roll two six sided dice. Add their total and 
 In psuedo code that means Rand(1-6) + Rand(1-6) + 1 
 
 */
-
-export interface FeyImageUpdate {
-    // Object returned from the Database Layer and S3 Result
-    uploadURL: string,
-    success: boolean
-}
