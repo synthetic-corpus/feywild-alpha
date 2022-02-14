@@ -27,9 +27,9 @@ export async function getAllHarptos(userId: String): Promise<HttpReplyMessage>{
     return reply
 }
 
-export async function updateHarptos(userId: String, tentId: String, harptosPatch: Harptos.HarptosUpdate): Promise<HttpReplyMessage>{
+export async function updateHarptos(userId: String, harptosId: String, harptosPatch: Harptos.HarptosUpdate): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(userId)
-    const reply: HttpReplyMessage = await DB.updateHarptos(db_uuid,tentId,harptosPatch)
+    const reply: HttpReplyMessage = await DB.updateHarptos(db_uuid,harptosId,harptosPatch)
     return reply
 }
 
