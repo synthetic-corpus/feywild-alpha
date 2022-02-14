@@ -3,7 +3,7 @@ import * as DB from '../03data/feywild.mongo';
 import { convertUserId } from '../03data/convertUserId';
 import { HttpReplyMessage } from '../interfaces/responses.interface'
 
-export async function createHarptos(userId: string, feywildPost: Feywild.FeywildCalendarHttp): Promise<HttpReplyMessage>{
+export async function createFeywild(userId: string, feywildPost: Feywild.FeywildCalendarHttp): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(userId)
     const post: Feywild.FeywildCalendar = {
         _user_id: db_uuid,
@@ -16,7 +16,7 @@ export async function createHarptos(userId: string, feywildPost: Feywild.Feywild
 export async function getFeywild(userId: string, feywildId: string): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(userId)
     console.log("Converted Id = ",db_uuid)
-    const reply: HttpReplyMessage = await DB.retrieveHarptos(db_uuid, feywildId)
+    const reply: HttpReplyMessage = await DB.retrieveFeywild(db_uuid, feywildId)
     return reply
 }
 

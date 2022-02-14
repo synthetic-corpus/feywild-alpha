@@ -8,7 +8,8 @@ const HarptosDay = new mongoose.Schema({
 })
 
 const HarptosSchema = new mongoose.Schema({
-    _campaign_id: {type: String, required: true},
+    _user_id: {type: ObjectId, required: true},
+    _campaign_id: {type: ObjectId},
     currentDay: {type: Number, required: true, default: 0},
     harptosYear: {type: Number, required: true, default: 1489},
     days: HarptosDay
