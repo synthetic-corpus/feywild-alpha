@@ -1,9 +1,14 @@
-export interface FeywildCalendar {
+export interface FeywildCalendarHttp {
     _campaign_id: string,
     feywildName: string,
     dilation: Dilation,
     currentSegment: number,
     feySegments: FeywildSegment[],
+}
+
+export interface FeywildCalendar extends FeywildCalendarHttp {
+    _id?: string,
+    _user_id:string
 }
 
 export interface FeywildSegment {
@@ -13,10 +18,10 @@ export interface FeywildSegment {
 }
 
 export interface FeywildUpdate {
-    feywildName: string,
-    dilation: Dilation,
-    currentSegment: number,
-    feySegments: FeywildSegment[]
+    feywildName?: string,
+    dilation?: Dilation,
+    currentSegment?: number,
+    feySegments?: FeywildSegment[]
 }
 
 export interface Dilation {
