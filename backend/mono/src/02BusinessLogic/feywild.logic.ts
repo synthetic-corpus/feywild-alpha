@@ -33,7 +33,7 @@ export async function updateFeywild(userId: String, feywildId: String, feywildPa
     return reply
 }
 
-export async function deleteHarptos(userId: String, feywildId: String): Promise<HttpReplyMessage>{
+export async function deleteFeywild(userId: String, feywildId: String): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(userId)
     const reply: HttpReplyMessage = await DB.deleteFeywild(db_uuid, feywildId)
     return reply

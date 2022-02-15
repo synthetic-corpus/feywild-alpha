@@ -40,7 +40,6 @@ router.patch('/:id', async (req: Request, res: Response) => {
 router.delete('/:id', async (req: Request, res: Response) => {
     const harptos_id = req.params.id
     const user_id = req.user_id
-    const harptos_patch: HarptosUpdate = req.body
     const reply: HttpReplyMessage = await HarptosLogic.deleteHarptos(user_id,harptos_id)
     return res.status(reply.code).send(reply)
 })
