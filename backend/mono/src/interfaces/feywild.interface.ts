@@ -14,7 +14,7 @@ export interface FeywildCalendar extends FeywildCalendarHttp {
 export interface FeywildSegment {
     astronomics: string /* represents position of sun/moon or day/night */
     weather: string /* what season is the fey wild apparently in*/
-    notes: string
+    notes?: string
 }
 
 export interface FeywildUpdate {

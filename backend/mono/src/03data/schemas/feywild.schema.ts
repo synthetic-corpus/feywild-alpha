@@ -5,13 +5,13 @@ const dilation = new mongoose.Schema({
     sides: {type: Number, required: true},
     rolls: {type: Number, required: true},
     add: {type: Number, required: true}
-})
+},{_id: false})
 
 const feySegment = new mongoose.Schema({
-    month: {type: String, required: true},
-    dayNumber: {type: String, reqruied: true},
-    season: {type: String, required: true}
-})
+    astronomics: {type: String, required: true},
+    weather: {type: String, reqruied: true},
+    notes: {type: String}
+},{_id: false})
 
 const FeywildSchema = new mongoose.Schema({
     _user_id: {type: ObjectId, required: true},

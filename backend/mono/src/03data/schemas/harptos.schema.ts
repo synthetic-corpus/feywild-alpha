@@ -5,7 +5,7 @@ const HarptosDay = new mongoose.Schema({
     month: {type: String, required: true},
     dayNumber: {type: String, reqruied: true},
     season: {type: String, required: true}
-})
+},{_id: false})
 
 const HarptosSchema = new mongoose.Schema({
     _user_id: {type: ObjectId, required: true},

@@ -25,7 +25,7 @@ export async function retrieveFeywild(userId: String, feywildId: String): Promis
         const thisFey = await FeywildModel.findById(feywildId)
         if(thisFey){
             if (userId === thisFey._user_id.toString()){
-                reply = {code: 200,message: "retrieved character tent",data: thisFey}
+                reply = {code: 200,message: "retrieved Fey Zone!",data: thisFey}
             }else{
                 reply = {code: 403,message: "You are not authorized to view this resource!"}
             }
@@ -33,7 +33,7 @@ export async function retrieveFeywild(userId: String, feywildId: String): Promis
             reply = {code: 404,message: "No Feywild Zone found!"}
         }
     }catch(e){
-        console.log(`Error on retrieving Feywild Zone at database layer for tent: ${feywildId} \n ${e}`)
+        console.log(`Error on retrieving Feywild Zone at database layer: ${feywildId} \n ${e}`)
         reply = {code: 500,message: "Internal Server Error"}
     }
     return reply
@@ -44,10 +44,10 @@ export async function retrieveAllFeywild(userId: String): Promise<HttpReplyMessa
     try{
         const query = {_user_id: userId}
         const theseFeyzones = await FeywildModel.find(query)
-        if(theseFeyzones){
-            reply = {code: 202,message: 'Found Tents',data: theseFeyzones}
+        if(theseFeyzones && theseFeyzones.length > 0){
+            reply = {code: 202,message: 'Found Fey Zones!',data: theseFeyzones}
         }else{
-            reply = {code: 404,message: "No Calendar found!",data: []}
+            reply = {code: 404,message: "No Feyzones found!",data: []}
         }
     }catch(e){
         console.log(`Error on retrieving Fey zones at database layer for tent: ${userId} \n ${e}`)
