@@ -32,7 +32,7 @@ export async function retrieveEncounter(userId: String, encounterId: String): Pr
     return reply
 }
 
-export async function searchEncounter(search: {_user_id: string, _campaign_id?: string}){
+export async function searchEncounters(search: {_user_id: string, _campaign_id?: string}){
     let reply: HttpReplyMessage
     try{
         const encounters = await EncounterModel.find(search)
@@ -46,6 +46,7 @@ export async function searchEncounter(search: {_user_id: string, _campaign_id?: 
         reply= {code: 404,message: "Encounter was not Found!"}
         console.error(`Possible Database Related Error \n ${e}`)
     }
+    return reply
 }
 
 export async function updateEncounter(userId: string, encounterId: string, encounterPatch: EncounterPatch): Promise<HttpReplyMessage>{
