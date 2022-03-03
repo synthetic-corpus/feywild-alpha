@@ -1,7 +1,7 @@
 import {Router, Request, Response} from 'express';
 import { HarptosCalendarHttp, HarptosUpdate } from '../../interfaces/harptos.interface';
 import { HttpReplyMessage } from '../../interfaces/responses.interface';
-import * as HarptosLogic from '../../02BusinessLogic/harptos.logic'
+import * as HarptosLogic from '../../02BusinessLogic/v0/harptos.logic'
 
 const router: Router = Router()
 

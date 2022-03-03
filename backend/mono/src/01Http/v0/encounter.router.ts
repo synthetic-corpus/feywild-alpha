@@ -1,6 +1,6 @@
 import {Router, Request, Response} from 'express';
 import { requireAuth } from '../../auth/v0/require.auth';
-import * as EncounterLogic from '../../02BusinessLogic/encounter.logic'
+import * as EncounterLogic from '../../02BusinessLogic/v0/encounter.logic'
 import { HttpReplyMessage } from '../../interfaces/responses.interface';
 import { EncounterHttp,EncounterPatch } from '../../interfaces/encounter.interface';
 

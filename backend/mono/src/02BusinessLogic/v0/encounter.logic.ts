@@ -1,7 +1,7 @@
-import * as Encounter from '../interfaces/encounter.interface';
-import * as DB from '../03data/encounter.mongo';
-import { convertUserId } from '../03data/convertUserId';
-import { HttpReplyMessage } from '../interfaces/responses.interface'
+import * as Encounter from '../../interfaces/encounter.interface';
+import * as DB from '../../03data/encounter.mongo';
+import { convertUserId } from '../../03data/convertUserId';
+import { HttpReplyMessage } from '../../interfaces/responses.interface'
 
 
 export async function createEncounter(userId: String, encounterPost: Encounter.EncounterHttp): Promise<HttpReplyMessage>{

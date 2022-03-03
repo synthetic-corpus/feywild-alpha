@@ -1,7 +1,7 @@
 import {Router, Request, Response} from 'express';
 import { requireAuth } from '../../auth/v0/require.auth';
 import { CampaignHttp, CampaignPatch } from '../../interfaces/campaign.interface';
-import * as CampaignLogic from '../../02BusinessLogic/campaign.logic'
+import * as CampaignLogic from '../../02BusinessLogic/v0/campaign.logic'
 import { HttpReplyMessage } from '../../interfaces/responses.interface';
 
 

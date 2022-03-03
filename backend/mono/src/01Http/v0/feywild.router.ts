@@ -1,5 +1,5 @@
 import {Router, Request, Response} from 'express';
-import * as FeywildLogic from '../../02BusinessLogic/feywild.logic'
+import * as FeywildLogic from '../../02BusinessLogic/v0/feywild.logic'
 import { FeywildCalendarHttp, FeywildUpdate } from '../../interfaces/feywild.interface';
 import { HttpReplyMessage } from '../../interfaces/responses.interface';
 

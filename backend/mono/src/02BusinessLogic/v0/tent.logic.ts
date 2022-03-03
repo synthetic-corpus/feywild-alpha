@@ -1,7 +1,7 @@
-import * as Tent from '../interfaces/tent.interface';
-import * as DB from '../03data/tent.mongo';
-import { convertUserId } from '../03data/convertUserId';
-import { HttpReplyMessage } from '../interfaces/responses.interface'
+import * as Tent from '../../interfaces/tent.interface';
+import * as DB from '../../03data/tent.mongo';
+import { convertUserId } from '../../03data/convertUserId';
+import { HttpReplyMessage } from '../../interfaces/responses.interface'
 
 
 export async function createTent(userId: String, tentPost: Tent.Tent): Promise<HttpReplyMessage>{

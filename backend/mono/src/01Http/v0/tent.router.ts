@@ -1,5 +1,5 @@
 import {Router, Request, Response} from 'express';
-import * as TentLogic from '../../02BusinessLogic/tent.logic'
+import * as TentLogic from '../../02BusinessLogic/v0/tent.logic'
 import { Tent, TentPatch } from '../../interfaces/tent.interface'
 import { HttpReplyMessage } from '../../interfaces/responses.interface';
 import { requireAuth } from '../../auth/v0/require.auth';

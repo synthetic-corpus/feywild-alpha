@@ -1,7 +1,7 @@
-import * as Harptos from '../interfaces/harptos.interface';
-import * as DB from '../03data/harptos.mongo';
-import { convertUserId } from '../03data/convertUserId';
-import { HttpReplyMessage } from '../interfaces/responses.interface'
+import * as Harptos from '../../interfaces/harptos.interface';
+import * as DB from '../../03data/harptos.mongo';
+import { convertUserId } from '../../03data/convertUserId';
+import { HttpReplyMessage } from '../../interfaces/responses.interface'
 
 export async function createHarptos(userId: string, harptosPost: Harptos.HarptosCalendarHttp): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(userId)
