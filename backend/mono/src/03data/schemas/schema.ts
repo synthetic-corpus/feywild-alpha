@@ -18,5 +18,12 @@ const tentSchema = new mongoose.Schema({
     notes: {type: String}
 })
 
+const campaignSchema = new mongoose.Schema({
+    _use_id: { type: ObjectId, required: true},
+    name: { type: String, required: true},
+    description: { type: String }
+})
+
 export const UserModel = mongoose.model('User',userSchema);
 export const TentModel = mongoose.model('Tent',tentSchema);
+export const CampaignModel = mongoose.model('Campaign',campaignSchema);

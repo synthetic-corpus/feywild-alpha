@@ -82,13 +82,13 @@ export async function deleteTent(userId: String, tentId: String): Promise<HttpRe
         const deletedTent = await TentModel.findOneAndDelete(query)
         if (deletedTent){
             const data = deletedTent
-            reply = {code:201, message: "Removed Tent Tent",data: data}
+            reply = {code:201, message: "Removed Tent",data: data}
         }else{
             console.log(`Could not find tent: ${tentId} with user: ${userId}. Possible auth issue!`)
             reply = {code:400, message: 'Unable to find tent or match with user'}
         }
     }catch(e){
-        console.log(`Database Layer error: Could not Deleted tent: ${tentId} with user: ${userId} \n ${e}`)
+        console.log(`Database Layer error: Could not Delete tent: ${tentId} with user: ${userId} \n ${e}`)
         reply = {code: 500, message: "Internal Server Error"}
     }
     return reply
