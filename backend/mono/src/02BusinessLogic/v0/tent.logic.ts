@@ -1,6 +1,6 @@
 import * as Tent from '../../interfaces/tent.interface';
-import * as DB from '../../03data/tent.mongo';
-import { convertUserId } from '../../03data/convertUserId';
+import * as DB from '../../03data/v0/tent.mongo';
+import { convertUserId } from '../../03data/v0/convertUserId';
 import { HttpReplyMessage } from '../../interfaces/responses.interface'
 
 

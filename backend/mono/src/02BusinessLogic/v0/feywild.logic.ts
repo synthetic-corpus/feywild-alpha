@@ -1,6 +1,6 @@
 import * as Feywild from '../../interfaces/feywild.interface';
-import * as DB from '../../03data/feywild.mongo';
-import { convertUserId } from '../../03data/convertUserId';
+import * as DB from '../../03data/v0/feywild.mongo';
+import { convertUserId } from '../../03data/v0/convertUserId';
 import { HttpReplyMessage } from '../../interfaces/responses.interface'
 
 export async function createFeywild(userId: string, feywildPost: Feywild.FeywildCalendarHttp): Promise<HttpReplyMessage>{

@@ -1,6 +1,6 @@
 import * as Harptos from '../../interfaces/harptos.interface';
-import * as DB from '../../03data/harptos.mongo';
-import { convertUserId } from '../../03data/convertUserId';
+import * as DB from '../../03data/v0/harptos.mongo';
+import { convertUserId } from '../../03data/v0/convertUserId';
 import { HttpReplyMessage } from '../../interfaces/responses.interface'
 
 export async function createHarptos(userId: string, harptosPost: Harptos.HarptosCalendarHttp): Promise<HttpReplyMessage>{

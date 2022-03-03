@@ -1,6 +1,6 @@
 import * as Campaign from '../../interfaces/campaign.interface';
-import * as DB from '../../03data/campaign.mongo';
-import { convertUserId } from '../../03data/convertUserId';
+import * as DB from '../../03data/v0/campaign.mongo';
+import { convertUserId } from '../../03data/v0/convertUserId';
 import { HttpReplyMessage } from '../../interfaces/responses.interface'
 
 

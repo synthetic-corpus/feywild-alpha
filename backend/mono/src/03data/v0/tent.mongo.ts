@@ -1,6 +1,6 @@
-import { HttpReplyMessage } from '../interfaces/responses.interface'
+import { HttpReplyMessage } from '../../interfaces/responses.interface'
 import { TentModel } from './schemas/schema'
-import { Tent, TentPatch } from "../interfaces/tent.interface";
+import { Tent, TentPatch } from "../../interfaces/tent.interface";
 
 
 export async function createTent(tent: Tent): Promise<HttpReplyMessage>{

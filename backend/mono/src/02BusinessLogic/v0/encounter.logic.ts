@@ -1,6 +1,6 @@
 import * as Encounter from '../../interfaces/encounter.interface';
-import * as DB from '../../03data/encounter.mongo';
-import { convertUserId } from '../../03data/convertUserId';
+import * as DB from '../../03data/v0/encounter.mongo';
+import { convertUserId } from '../../03data/v0/convertUserId';
 import { HttpReplyMessage } from '../../interfaces/responses.interface'
 
 

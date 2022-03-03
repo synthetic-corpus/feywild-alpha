@@ -1,6 +1,6 @@
-import { HttpReplyMessage } from '../interfaces/responses.interface'
+import { HttpReplyMessage } from '../../interfaces/responses.interface'
 import { CampaignModel } from './schemas/schema'
-import { Campaign, CampaignPatch } from "../interfaces/campaign.interface";
+import { Campaign, CampaignPatch } from "../../interfaces/campaign.interface";
 
 
 export async function createCampaign(campaign: Campaign): Promise<HttpReplyMessage>{
