@@ -3,3 +3,4 @@ backend/mono/www
 backend/mono/src/config.ts
 basic-front/
 auth_config.json
+src/auth_config.json

@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
-const authConfig = require('./auth_config.json');
+const authConfig = require('../../../auth_config.json');
 
 const app = express();
 
