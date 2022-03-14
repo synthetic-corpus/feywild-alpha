@@ -3,7 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';;
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -15,7 +19,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FontAwesomeModule,
+    MatMenuModule,
+    MatIconModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
