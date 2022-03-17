@@ -7,16 +7,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { StartPageComponent } from './components/start-page/start-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavBarComponent,
+    StartPageComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
+    MatCardModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
