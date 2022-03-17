@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -29,6 +30,7 @@ import { StartPageComponent } from './components/start-page/start-page.component
     MatIconModule,
     MatButtonModule,
     MatCardModule,
+    MatToolbarModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {

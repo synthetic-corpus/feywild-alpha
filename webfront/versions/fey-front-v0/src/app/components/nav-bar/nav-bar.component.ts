@@ -13,6 +13,7 @@ export class NavBarComponent implements OnInit {
   faUser = faUser;
   faPowerOff = faPowerOff;
 
+
   constructor(
     public auth: AuthService,
     @Inject(DOCUMENT) private doc: Document
