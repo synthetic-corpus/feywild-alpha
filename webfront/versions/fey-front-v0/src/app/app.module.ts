@@ -11,16 +11,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { AppRouterModule } from './app-router.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { StartPageComponent } from './components/start-page/start-page.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    StartPageComponent
+    StartPageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { StartPageComponent } from './components/start-page/start-page.component
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
+    AppRouterModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {

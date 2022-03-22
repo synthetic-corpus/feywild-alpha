@@ -3,3 +3,4 @@
 
 <!-- The Main Page Only shows if User Logged in-->
 <app-nav-bar *ngIf="auth.user$ | async as user"></app-nav-bar >
+<router-outlet *ngIf="(auth.isAuthenticated$ | async) === true"></router-outlet>
