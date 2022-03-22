@@ -16,13 +16,21 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { StartPageComponent } from './components/start-page/start-page.component';
 import { HomeComponent } from './components/home/home.component';
+import { TentsComponent } from './components/tents/tents.component';
+import { EncountersComponent } from './components/encounters/encounters.component';
+import { RunEncountersComponent } from './components/run-encounters/run-encounters.component';
+import { InitiativeListComponent } from './components/run-encounters/initiative-list/initiative-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     StartPageComponent,
-    HomeComponent
+    HomeComponent,
+    TentsComponent,
+    EncountersComponent,
+    RunEncountersComponent,
+    InitiativeListComponent
   ],
   imports: [
     BrowserModule,
