@@ -42,6 +42,7 @@ import { InitiativeListComponent } from './components/run-encounters/initiative-
     MatCardModule,
     MatToolbarModule,
     AppRouterModule,
+    HttpClientModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
