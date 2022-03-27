@@ -1,5 +1,4 @@
 export interface UserHttp {
-  _authID: String,
   name: String,
   tier: Number
 }
