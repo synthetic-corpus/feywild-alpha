@@ -27,17 +27,18 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user$.subscribe(
-      (profile) => this.userName = profile?.given_name + " " + profile?.family_name || "New User"
+      (profile) => {
+        this.userName = profile?.given_name + " " + profile?.family_name || "New User"
+        this.checkCampaign()
+        this.checkUser()
+      }
     );
   }
 
   loginWithRedirect() {
     this.auth.loginWithRedirect();
     this.auth.user$.subscribe(
-      (profile) =>{
-        (profile: any) => this.userName = profile?.given_name + " " + profile?.family_name || "New User"
-          this.checkUser()
-      }
+      (profile: any) => this.userName = profile?.given_name + " " + profile?.family_name || "New User"
     )
   }
 
@@ -51,7 +52,23 @@ export class NavBarComponent implements OnInit {
       .subscribe(
         (response: any) => {
           if(response.code == 404) {
-            this.userService.createUser({name: this.userName, tier: 1})
+            this.userService.createUser({name: this.userName, tier: 1}).subscribe(
+              (response: any)=>{ console.log(response)}
+            )
+          }
+        }
+      )
+  }
+
+  checkCampaign(){
+    // Verifies if a Campaign exists. Creates one if it does not.
+    this.campaignService.retrieveCampaigns()
+      .subscribe(
+        (response: any) => {
+          if(response.code == 404){
+            this.campaignService.createCampaign({name: 'My Campaign'}).subscribe(
+              (response: any) => {console.log(response)}
+            )
           }
         }
       )
