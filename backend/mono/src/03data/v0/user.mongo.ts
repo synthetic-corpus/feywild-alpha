@@ -1,6 +1,6 @@
-import { HttpReplyMessage } from '../interfaces/responses.interface'
+import { HttpReplyMessage } from '../../interfaces/responses.interface'
 import { UserModel } from './schemas/schema'
-import { UserPatch } from '../interfaces/user.interface'
+import { UserPatch } from '../../interfaces/user.interface'
 
 export async function createUser(userId: String): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage

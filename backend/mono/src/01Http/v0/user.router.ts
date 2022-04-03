@@ -1,6 +1,6 @@
 import {Router, Request, Response} from 'express';
 import { getUserId } from '../../auth/v0/authUtils';
-import * as UserLogic from '../../02BusinessLogic/user.logic'
+import * as UserLogic from '../../02BusinessLogic/v0/user.logic'
 import { HttpReplyMessage } from '../../interfaces/responses.interface';
 import { stringify } from 'querystring';
 

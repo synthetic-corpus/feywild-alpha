@@ -3,7 +3,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const encounterNPC = new mongoose.Schema({
     name: {type: String, required: true},
-    initiative: {types: String, required: true},
+    initiative: {type: Number, required: true},
     ac: {type: Number},
     notes: {type: String}
 },{_id: false})
