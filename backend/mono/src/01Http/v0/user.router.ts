@@ -3,6 +3,7 @@ import { getUserId } from '../../auth/v0/authUtils';
 import * as UserLogic from '../../02BusinessLogic/v0/user.logic'
 import { HttpReplyMessage } from '../../interfaces/responses.interface';
 import { stringify } from 'querystring';
+import { requireAuth } from '../../auth/v0/require.auth';
 
 const router: Router = Router()
 
@@ -10,7 +11,7 @@ router.get('/health', async (req: Request, res: Response) => {
     res.status(200).send('Users API is up');
 })
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', requireAuth, async (req: Request, res: Response) => {
     const id = getUserId(req) || ''
     if(!id){
         console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
@@ -23,7 +24,7 @@ router.post('/', async (req: Request, res: Response) => {
         })
 })
 
-router.get('/self', async (req: Request, res: Response) => {
+router.get('/self', requireAuth, async (req: Request, res: Response) => {
     const id = getUserId(req) || ''
     if(!id){
         console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
@@ -36,7 +37,7 @@ router.get('/self', async (req: Request, res: Response) => {
         })
 })
 
-router.patch('/self', async (req: Request, res: Response) => {
+router.patch('/self', requireAuth, async (req: Request, res: Response) => {
     const id = getUserId(req) || ''
     if(!id){
         console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
@@ -50,7 +51,7 @@ router.patch('/self', async (req: Request, res: Response) => {
         })
 })
 
-router.delete('/self', async (req: Request, res: Response) => {
+router.delete('/self', requireAuth, async (req: Request, res: Response) => {
     const id = getUserId(req) || ''
     if(!id){
         console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
