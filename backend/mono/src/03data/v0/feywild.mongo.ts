@@ -1,6 +1,6 @@
-import { HttpReplyMessage } from '../interfaces/responses.interface'
+import { HttpReplyMessage } from '../../interfaces/responses.interface'
 import { FeywildModel } from './schemas/feywild.schema'
-import { FeywildCalendar, FeywildUpdate } from "../interfaces/feywild.interface";
+import { FeywildCalendar, FeywildUpdate } from "../../interfaces/feywild.interface";
 
 
 export async function createFeywild(newZone: FeywildCalendar): Promise<HttpReplyMessage>{

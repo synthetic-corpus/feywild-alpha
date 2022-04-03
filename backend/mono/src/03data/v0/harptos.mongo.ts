@@ -1,6 +1,6 @@
-import { HttpReplyMessage } from '../interfaces/responses.interface'
+import { HttpReplyMessage } from '../../interfaces/responses.interface'
 import { HarptosModel } from './schemas/harptos.schema'
-import { HarptosCalendar, HarptosUpdate } from "../interfaces/harptos.interface";
+import { HarptosCalendar, HarptosUpdate } from "../../interfaces/harptos.interface";
 
 
 export async function createHarptos(harptos: HarptosCalendar): Promise<HttpReplyMessage>{
