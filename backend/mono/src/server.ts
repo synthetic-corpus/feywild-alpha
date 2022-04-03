@@ -1,4 +1,5 @@
 import express from 'express';
+const cors = require('cors');
 import { config } from './config';
 import { Request, Response } from 'express';
 import { CampaignRouterV0 } from './01Http/v0/campaign.router';
@@ -7,6 +8,7 @@ import { HarptosRouterV0 } from './01Http/v0/harptos.router';
 import { UserRouterV0 } from './01Http/v0/user.router';
 import { EncounterRouterV0 } from './01Http/v0/encounter.router';
 import { TentRouterV0 } from './01Http/v0/tent.router';
+
 
 // Database connection derived from DB Layers for decoupling practes
 import { myDatabase, databaseName } from './03data/v0/database'
@@ -21,6 +23,7 @@ const port = config.port
 app.use(express.json())
 
 /* Make way for the Routers */
+app.use(cors())
 app.use('/v0/feywild', FeywildRouterV0)
 app.use('/v0/harptos', HarptosRouterV0)
 app.use('/v0/campaign', CampaignRouterV0)
