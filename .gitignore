@@ -2,3 +2,6 @@ backend/mono/node_modules
 backend/mono/www
 backend/mono/src/config.ts
 basic-front/
+node_modules
+package.json
+package-lock.json
