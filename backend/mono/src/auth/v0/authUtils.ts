@@ -7,6 +7,7 @@ import Axios from 'axios'
 export function getUserId(req: Request): string | undefined {
     const authorization = req.headers.authorization as string
     if(authorization){
+        console.log(authorization)
         const split: string[] = authorization.split(/[ %]+/)
         const jwtToken = split[1]
         return parseUserId(jwtToken)
@@ -28,6 +29,7 @@ export async function verifyToken(authHeader: string): Promise<JwtPayload> {
   }
   
   function getToken(authHeader: string): string {
+    console.log(authHeader)
     if (!authHeader) throw new Error('No authentication header')
   
     if (!authHeader.toLowerCase().startsWith('bearer '))
