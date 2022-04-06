@@ -2,6 +2,11 @@ backend/mono/node_modules
 backend/mono/www
 backend/mono/src/config.ts
 basic-front/
+<<<<<<< HEAD
+auth_config.json
+src/auth_config.json
+=======
 node_modules
 package.json
 package-lock.json
+>>>>>>> main

@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Tent Card The APP</span>
+    <span class="nav-bar-spacer"></span>
+    <button mat-button id="userMenu" [matMenuTriggerFor]="user">
+      <img
+        *ngIf="auth.user$ | async as user"
+        [src]="user.picture"
+        alt="Profile picture"
+        style="width: 75px;"
+      />
+      <mat-icon *ngIf="!auth.user$">
+        Menu
+      </mat-icon>
+    </button>
+    <mat-menu #user="matMenu">
+      <button mat-menu-item>
+        <mat-icon>map</mat-icon>
+        <span>Add Campaign</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>Edit User</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
