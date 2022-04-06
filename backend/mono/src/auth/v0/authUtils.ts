@@ -7,7 +7,6 @@ import Axios from 'axios'
 export function getUserId(req: Request): string | undefined {
     const authorization = req.headers.authorization as string
     if(authorization){
-        console.log(authorization)
         const split: string[] = authorization.split(/[ %]+/)
         const jwtToken = split[1]
         return parseUserId(jwtToken)
@@ -16,7 +15,6 @@ export function getUserId(req: Request): string | undefined {
 
 export function parseUserId(jwtToken: string): string {
     const decodedJwt = decode(jwtToken) as JwtPayload
-    
     return decodedJwt.sub
   }
 
