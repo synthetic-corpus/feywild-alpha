@@ -2,10 +2,10 @@ import { HttpReplyMessage } from '../../interfaces/responses.interface'
 import { UserModel } from './schemas/schema'
 import { UserPatch } from '../../interfaces/user.interface'
 
-export async function createUser(userId: String): Promise<HttpReplyMessage>{
+export async function createUser(userId: String, name:string): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage
     try{
-        const newUser = new UserModel({_authID: userId})
+        const newUser = new UserModel({_authID: userId, name: name})
         await newUser.save()
         reply = {code: 201,message: "New User Created!"}
     }catch(e){

@@ -4,8 +4,8 @@ import { convertUserId } from '../../03data/v0/convertUserId';
 import { HttpReplyMessage } from '../../interfaces/responses.interface'
 
 
-export async function createUser(userId: String): Promise<HttpReplyMessage>{
-    const reply: HttpReplyMessage = await DB.createUser(userId);
+export async function createUser(userId: String, name: string): Promise<HttpReplyMessage>{
+    const reply: HttpReplyMessage = await DB.createUser(userId, name);
     return reply
 }
 

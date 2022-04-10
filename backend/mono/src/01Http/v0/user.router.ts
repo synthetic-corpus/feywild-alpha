@@ -4,6 +4,7 @@ import * as UserLogic from '../../02BusinessLogic/v0/user.logic'
 import { HttpReplyMessage } from '../../interfaces/responses.interface';
 import { stringify } from 'querystring';
 import { requireAuth } from '../../auth/v0/require.auth';
+import { UserPatch,UserHttp } from '../../interfaces/user.interface';
 
 const router: Router = Router()
 
@@ -13,11 +14,12 @@ router.get('/health', async (req: Request, res: Response) => {
 
 router.post('/', requireAuth, async (req: Request, res: Response) => {
     const id = getUserId(req) || ''
+    const userHttp: UserHttp = req.body
     if(!id){
         console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
         return res.status(500).send("Problem with user identification.!")
     }
-    UserLogic.createUser(id)
+    UserLogic.createUser(id,userHttp.name)
         .then((reply: HttpReplyMessage)=>{
             const status: number = reply.code || 500
             return res.status(status).send(reply)

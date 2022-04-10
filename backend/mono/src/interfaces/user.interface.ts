@@ -9,3 +9,7 @@ export interface UserPatch {
     name?: String,
     tier?: Number
 }
+
+export interface UserHttp {
+    name: string
+}

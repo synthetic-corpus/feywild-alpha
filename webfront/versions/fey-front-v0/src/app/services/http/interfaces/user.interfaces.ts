@@ -1,6 +1,5 @@
 export interface UserHttp {
-  name: String,
-  tier: Number
+  name: String
 }
 
 export interface UserPatch {
