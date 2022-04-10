@@ -19,7 +19,7 @@ const tentSchema = new mongoose.Schema({
 })
 
 const campaignSchema = new mongoose.Schema({
-    _use_id: { type: ObjectId, required: true},
+    _user_id: { type: ObjectId, required: true},
     name: { type: String, required: true},
     description: { type: String }
 })

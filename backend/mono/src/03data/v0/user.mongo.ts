@@ -1,12 +1,14 @@
 import { HttpReplyMessage } from '../../interfaces/responses.interface'
-import { UserModel } from './schemas/schema'
+import { CampaignModel, UserModel } from './schemas/schema'
 import { UserPatch } from '../../interfaces/user.interface'
 
 export async function createUser(userId: String, name:string): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage
     try{
         const newUser = new UserModel({_authID: userId, name: name})
-        await newUser.save()
+        const createdUser = await newUser.save()
+        const newCampaign = new CampaignModel({_user_id: createdUser._id, name: 'My Campaign'})
+        await newCampaign.save()
         reply = {code: 201,message: "New User Created!"}
     }catch(e){
         reply = {code: 503,message: "Internal server side error" }

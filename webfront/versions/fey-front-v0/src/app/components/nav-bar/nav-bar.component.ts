@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
 import { CampaignHttpService } from 'src/app/services/http/campaign-http.service';
 import { AccountHttpService } from 'src/app/services/http/account-http.service';
 import { HttpResponse } from '@angular/common/http';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
@@ -29,8 +30,7 @@ export class NavBarComponent implements OnInit {
     this.auth.user$.subscribe(
       (profile) => {
         this.userName = profile?.given_name + " " + profile?.family_name || "New User"
-        this.checkCampaign()
-        this.checkUser()
+
       }
     );
   }
@@ -44,33 +44,5 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.auth.logout({ returnTo: this.doc.location.origin });
-  }
-
-  checkUser() {
-    // Verifies if User account exists in Database. Creates if not.
-    this.userService.retrieveSelf()
-      .subscribe(
-        (response: any) => {
-          if(response.code == 404) {
-            this.userService.createUser({name: this.userName, tier: 1}).subscribe(
-              (response: any)=>{ console.log(response)}
-            )
-          }
-        }
-      )
-  }
-
-  checkCampaign(){
-    // Verifies if a Campaign exists. Creates one if it does not.
-    this.campaignService.retrieveCampaigns()
-      .subscribe(
-        (response: any) => {
-          if(response.code == 404){
-            this.campaignService.createCampaign({name: 'My Campaign'}).subscribe(
-              (response: any) => {console.log(response)}
-            )
-          }
-        }
-      )
   }
 }

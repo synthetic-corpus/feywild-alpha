@@ -13,7 +13,7 @@ export class AccountHttpService {
   constructor(private http: HttpClient) { }
 
   createUser(newUser: UserHttp ){
-    return this.http.post(`${env.auth.apiUri}/user`,newUser, CORS )
+    return this.http.post(`${env.auth.apiUri}/user`,newUser, CORS)
   }
 
   retrieveSelf(){
