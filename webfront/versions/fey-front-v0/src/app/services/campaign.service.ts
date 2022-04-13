@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { CampaignHttpService } from './http/campaign-http.service';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { CampaignHttpService } from './http/campaign-http.service';
 export class CampaignService {
 
   currentCampaign: {_id?: string, _user_id?: string, name?: string, _v?: number, notes?: string} = {}
-
+  campaignAdded = new EventEmitter<{_id?: string, _user_id?: string, name?: string, _v?: number, notes?: string}>()
   constructor(
     private campaignHttp: CampaignHttpService
   ) { }
@@ -18,6 +18,7 @@ export class CampaignService {
         (res: any)=>{
           this.currentCampaign = res.data[0]
           console.log(this.currentCampaign)
+          this.campaignAdded.emit(this.currentCampaign)
         }
       )
   }

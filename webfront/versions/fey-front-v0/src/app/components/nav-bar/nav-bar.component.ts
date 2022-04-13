@@ -23,7 +23,7 @@ export class NavBarComponent implements OnInit {
     public auth: AuthService,
     @Inject(DOCUMENT) private doc: Document,
     private userService: AccountHttpService,
-    public campaignService: CampaignService
+    private campaignService: CampaignService
   ) {
     this.myCampaign = '';
   }
@@ -44,6 +44,10 @@ export class NavBarComponent implements OnInit {
       )
       console.log(this.userReady)
     this.campaignService.readyCampaign()
+    this.campaignService.campaignAdded
+      .subscribe(
+        (event)=>{this.myCampaign = event.name || 'my Campaign'}
+      )
   }
 
   loginWithRedirect() {
