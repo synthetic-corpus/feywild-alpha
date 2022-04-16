@@ -20,6 +20,7 @@ import { TentsComponent } from './components/tents/tents.component';
 import { EncountersComponent } from './components/encounters/encounters.component';
 import { RunEncountersComponent } from './components/run-encounters/run-encounters.component';
 import { InitiativeListComponent } from './components/run-encounters/initiative-list/initiative-list.component';
+import { NpcgroupComponent } from './components/encounters/npcgroup/npcgroup.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { InitiativeListComponent } from './components/run-encounters/initiative-
     TentsComponent,
     EncountersComponent,
     RunEncountersComponent,
-    InitiativeListComponent
+    InitiativeListComponent,
+    NpcgroupComponent
   ],
   imports: [
     BrowserModule,
