@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NpcgroupComponent implements OnInit {
   // Reactive Form that will have a list of NPCs to battle.
-  @Input() db_id: string
+  @Input() db_id!: string
   constructor() { }
 
   ngOnInit(): void {
