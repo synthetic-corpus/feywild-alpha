@@ -27,7 +27,7 @@ export async function verifyToken(authHeader: string): Promise<JwtPayload> {
   }
   
   function getToken(authHeader: string): string {
-    console.log(authHeader)
+    // console.log(authHeader)
     if (!authHeader) throw new Error('No authentication header')
   
     if (!authHeader.toLowerCase().startsWith('bearer '))
