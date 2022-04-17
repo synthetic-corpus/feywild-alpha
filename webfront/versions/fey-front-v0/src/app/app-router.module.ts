@@ -6,10 +6,13 @@ import { TentsComponent } from './components/tents/tents.component';
 import { NpcgroupComponent } from './components/encounters/npcgroup/npcgroup.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: 'home', component: HomeComponent, pathMatch: 'full' },
   { path: 'encounters', component: EncountersComponent},
   { path: 'encounters/:id', component: NpcgroupComponent},
-  { path: 'tents', component: TentsComponent}
+  { path: 'tents', component: TentsComponent},
+  { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ]
 
 @NgModule({
