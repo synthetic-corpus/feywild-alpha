@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-npcgroup',
@@ -7,10 +8,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NpcgroupComponent implements OnInit {
   // Reactive Form that will have a list of NPCs to battle.
-  @Input() db_id!: string
-  constructor() { }
+  db_id!: string // Will be the DB's unique identifier or "new"
+  encounter_name: string = 'My Next Encounter'
+  npcs: {name: string, initiative: number, ac?: number, notes?: number}[] = []
+
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.route.params
+      .subscribe(
+        (params: Params) =>{this.db_id = params['id']})
   }
-
 }
