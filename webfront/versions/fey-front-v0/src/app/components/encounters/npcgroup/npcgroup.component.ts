@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
+import { EncounterHttpService } from 'src/app/services/http/encounter-http.service';
 
 @Component({
   selector: 'app-npcgroup',
@@ -13,12 +15,19 @@ export class NpcgroupComponent implements OnInit {
   npcs: {name: string, initiative: number, ac?: number, notes?: number}[] = []
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private encountersHttp: EncounterHttpService
   ) { }
 
   ngOnInit(): void {
     this.route.params
       .subscribe(
         (params: Params) =>{this.db_id = params['id']})
+    this.encountersHttp.retrieveEncounter(this.db_id)
+        .subscribe(
+          (reply: HttpReplyMessage) =>{
+            console.log()
+          }
+        )
   }
 }

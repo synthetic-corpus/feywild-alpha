@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EncounterHttpService } from 'src/app/services/http/encounter-http.service';
+import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
 
 @Component({
   selector: 'app-encounters',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EncountersComponent implements OnInit {
 
-  constructor() { }
+  myEncounters: Object[] = []
+
+  constructor(
+    private encountersHttp: EncounterHttpService
+  ) { }
 
   ngOnInit(): void {
+    this.encountersHttp.retrieveEncounters()
+      .subscribe(
+        (reply: HttpReplyMessage) => {
+          this.myEncounters = reply.data as Object[]
+        },
+        (error) =>{
+          console.log(error)
+        }
+      )
   }
 
 }

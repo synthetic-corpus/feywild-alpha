@@ -7,8 +7,9 @@ import Axios from 'axios'
 export function getUserId(req: Request): string | undefined {
     const authorization = req.headers.authorization as string
     if(authorization){
-        const split: string[] = authorization.split(/[ %]+/)
-        const jwtToken = split[1]
+        console.log(authorization)
+        const split: string[] = authorization.split(/[ %,]+/)
+        const jwtToken = split[1].replace('"','')
         return parseUserId(jwtToken)
     }
 }
@@ -20,20 +21,23 @@ export function parseUserId(jwtToken: string): string {
 
 export async function verifyToken(authHeader: string): Promise<JwtPayload> {
     const token = getToken(authHeader)
+    console.log("The token I got was.... ",token)
     const jwt: Jwt = decode(token, { complete: true }) as Jwt
+    console.log("I tried to decode and got ",jwt)
     const rawCert: string = await matchToKey(jwt.header.kid)
     const cert = stringToPEM(rawCert)
     return verify(token, cert, { algorithms: ['RS256']}) as JwtPayload
   }
   
   function getToken(authHeader: string): string {
-    // console.log(authHeader)
+    //console.log(authHeader)
     if (!authHeader) throw new Error('No authentication header')
   
     if (!authHeader.toLowerCase().startsWith('bearer '))
       throw new Error('Invalid authentication header')
-    const split = authHeader.split(' ')
-    const token = split[1]
+    const split = authHeader.split(/[ ,]+/)
+    const token = split[1].replace('"','')
+    console.log("Get Token gets ",token)
     return token
   }
   
