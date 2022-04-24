@@ -4,6 +4,8 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,6 +24,7 @@ import { RunEncountersComponent } from './components/run-encounters/run-encounte
 import { InitiativeListComponent } from './components/run-encounters/initiative-list/initiative-list.component';
 import { NpcgroupComponent } from './components/encounters/npcgroup/npcgroup.component';
 import { PlayercharacterComponent } from './components/tents/playercharacter/playercharacter.component';
+import { NpcComponent } from './components/encounters/npc/npc.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { PlayercharacterComponent } from './components/tents/playercharacter/pla
     RunEncountersComponent,
     InitiativeListComponent,
     NpcgroupComponent,
-    PlayercharacterComponent
+    PlayercharacterComponent,
+    NpcComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,7 @@ import { PlayercharacterComponent } from './components/tents/playercharacter/pla
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
+    MatFormFieldModule,
     AppRouterModule,
     HttpClientModule,
     AuthModule.forRoot({

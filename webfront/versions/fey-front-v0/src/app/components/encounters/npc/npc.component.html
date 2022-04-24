@@ -1,0 +1,31 @@
+<mat-card *ngIf="editting === false">
+  <mat-card-title>{{ name }}</mat-card-title>
+  <mat-card-subtitle>
+    <span>Initiative: {{ initiative }}</span>
+    <span *ngIf="armor">Armor: {{ armor}}</span>
+  </mat-card-subtitle>
+  <mat-card-content *ngIf="notes">
+    {{ notes }}
+  </mat-card-content>
+  <!-- Buttons -->
+  <button mat-flat-button color="primary" (click)="toggleEdit()">Edit</button>
+  <button mat-flat-button color="primary">Duplicate</button>
+  <button mat-flat-button color="warn">Trash</button>
+</mat-card>
+
+<form *ngIf="editting === true">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field appearance="fill" type="number">
+    <mat-label>Initiative</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Notes</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+  <button mat-flat-button color="secondary" ()="toggleEdit()">Done!</button>
+</form>
+
