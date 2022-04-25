@@ -14,18 +14,24 @@
 </mat-card>
 
 <div *ngIf="editting === true">
-  <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field appearance="fill" type="number">
-    <mat-label>Initiative</mat-label>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Notes</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
-  <button mat-flat-button color="secondary" (click)="toggleEdit()">Done!</button>
+  <form [formGroup]="npcForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput="name" formControlName="nameFC">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Initiative</mat-label>
+      <input matInput formControlName="initiativeFC" type="number">
+    </mat-form-field>
+    <mat-form-field appearance="fill" type="number">
+      <mat-label>Armor</mat-label>
+      <input matInput formControlName="armorFC">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="armorFC"></textarea>
+    </mat-form-field>
+    <button mat-flat-button color="secondary" (click)="toggleEdit()">Done!</button>
+  </form>
 </div>
 

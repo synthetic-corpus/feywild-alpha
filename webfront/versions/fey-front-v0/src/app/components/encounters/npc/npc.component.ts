@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-npc',
   templateUrl: './npc.component.html',
@@ -12,10 +12,18 @@ export class NpcComponent implements OnInit {
   @Input() armor!: number
   @Input() notes!: string
 
+  npcForm: FormGroup
+
   editting: boolean = false
   constructor() { }
 
   ngOnInit(): void {
+    this.npcForm = new FormGroup({
+      'nameFC': new FormControl(this.name),
+      'initiativeFC': new FormControl(this.initiative),
+      'armorFC': new FormControl(this.armor),
+      'notesFC': new FormControl(this.notes)
+    })
   }
 
   toggleEdit(){
