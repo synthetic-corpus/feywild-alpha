@@ -6,7 +6,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -51,6 +52,7 @@ import { NpcComponent } from './components/encounters/npc/npc.component';
     MatCardModule,
     MatToolbarModule,
     MatFormFieldModule,
+    MatInputModule,
     AppRouterModule,
     HttpClientModule,
     ReactiveFormsModule,
