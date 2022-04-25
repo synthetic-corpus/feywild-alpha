@@ -1,6 +1,11 @@
-<p>
-   Hello this would be a group of NPCs.
-</p>
-<p>
-    My id is {{ db_id }}
-</p>
+<p>Accessing dummy data for {{ db_id }}</p>
+<app-npc
+  *ngFor="let npc of npcs"
+  [id]="npc.web_element_id"
+  [web_element_id]="npc.web_element_id"
+  [name]="npc.name"
+  [initiative]="npc.initiative"
+  [armor]="npc.ac"
+  [notes]="npc.notes"
+>
+</app-npc>

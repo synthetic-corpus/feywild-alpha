@@ -13,7 +13,7 @@
   <button mat-flat-button color="warn">Trash</button>
 </mat-card>
 
-<form *ngIf="editting === true">
+<div *ngIf="editting === true">
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
     <input matInput>
@@ -26,6 +26,6 @@
     <mat-label>Notes</mat-label>
     <textarea matInput></textarea>
   </mat-form-field>
-  <button mat-flat-button color="secondary" ()="toggleEdit()">Done!</button>
-</form>
+  <button mat-flat-button color="secondary" (click)="toggleEdit()">Done!</button>
+</div>
 
