@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
 @Component({
   selector: 'app-npc',
   templateUrl: './npc.component.html',
@@ -15,7 +16,9 @@ export class NpcComponent implements OnInit {
   npcForm: FormGroup
 
   editting: boolean = false
-  constructor() { }
+  constructor(
+    private sanitizeString: SanitizeStringsService
+  ) { }
 
   ngOnInit(): void {
     this.npcForm = new FormGroup({
@@ -29,4 +32,12 @@ export class NpcComponent implements OnInit {
   toggleEdit(){
     this.editting ? this.editting = false : this.editting = true
   }
+
+  onSubmit(){
+    console.log(this.npcForm)
+    this.toggleEdit()
+    this.name = this.sanitizeString.sanitize(this.npcForm.value.nameFC)
+    this.notes = this.sanitizeString.sanitize(this.npcForm.value.notesFC)
+  }
+
 }
