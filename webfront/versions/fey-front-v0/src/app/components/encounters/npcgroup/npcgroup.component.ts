@@ -9,14 +9,7 @@ import { WebidsService } from 'src/app/services/webids.service';
 @Component({
   selector: 'app-npcgroup',
   templateUrl: './npcgroup.component.html',
-  styleUrls: ['./npcgroup.component.css'],
-  providers: [
-    ArrayService,
-    {
-      provide: 'myArray',
-      useValue: []
-    }
-  ]
+  styleUrls: ['./npcgroup.component.css']
 })
 export class NpcgroupComponent implements OnInit, OnDestroy {
   // Reactive Form that will have a list of NPCs to battle.
@@ -34,13 +27,10 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private encountersHttp: EncounterHttpService,
-    private webId: WebidsService,
-    private arrayService: ArrayService
+    private webId: WebidsService
   ) { }
 
   ngOnInit(): void {
-    this.arrayService.myArray = this.dummy_array.slice()
-
     this.route.params
       .subscribe(
         (params: Params) =>{this.db_id = params['id']})
@@ -70,16 +60,28 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
 
   // The update, delete and Duplicate all update the array of NPCs,
   // Then Save to DB... (this is only a plan right now)
-  onUpdateNpc(event){
-    console.log(event)
+  getElementIndex(object){
+    return this.npcs.findIndex((element)=>object.web_element_id === element.web_element_id)
   }
 
-  onDuplicateNpc(event){
-    console.log(event)
+  onUpdateNpc(object){
+    //console.log(object)
+    const index = this.getElementIndex(object)
+    this.npcs.splice(index,1,object)
   }
 
-  onDeleteNpc(event){
-    console.log(event)
+  onDuplicateNpc(web_element_id){
+    //console.log(e)
+    const index = this.npcs.findIndex(element => element.web_element_id === web_element_id)
+    const pushThis = this.npcs[index]
+    pushThis.web_element_id = this.webId.generate()
+    this.npcs.splice(index,0,pushThis)
+  }
+
+  onDeleteNpc(web_element_id){
+    //console.log(event)
+    const index = this.npcs.findIndex(element => element.web_element_id === web_element_id)
+    this.npcs.splice(index,1)
   }
 
   ngOnDestroy(): void {

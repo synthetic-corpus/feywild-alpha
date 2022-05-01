@@ -10,6 +10,9 @@ export class SanitizeStringsService {
 
   sanitize(string: string){
     // Removes characters that might be used for to create JSON, sql injection attacks etc
-    return string.replaceAll(/[\<\>{}\-\=;\:]+/g,'')
+    if(string){
+      return string.replaceAll(/[\<\>{}\-\=;\:]+/g,'')
+    }
+    return undefined
   }
 }
