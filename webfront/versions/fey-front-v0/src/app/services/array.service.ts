@@ -1,16 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 @Injectable()
 export class ArrayService {
   // Expect to get objects with names like "web_element_id in them."
   // User for get their index and possibley mutating arrays.
-  myArray!: any[]
+  //myArray!: any[]
   constructor(
+    @Inject('myArray') public myArray: any[]
   ) {}
-
-  getArray(){
-    return this.myArray
-  }
 
   getElementIndex(object){
     return this.myArray.findIndex((element)=>object.web_element_id === element.web_element_id)

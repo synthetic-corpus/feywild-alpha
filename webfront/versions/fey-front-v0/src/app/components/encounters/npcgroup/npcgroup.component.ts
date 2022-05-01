@@ -1,13 +1,22 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
+import { ArrayService } from 'src/app/services/array.service';
 import { EncounterHttpService } from 'src/app/services/http/encounter-http.service';
 import { WebidsService } from 'src/app/services/webids.service';
 
 @Component({
   selector: 'app-npcgroup',
   templateUrl: './npcgroup.component.html',
-  styleUrls: ['./npcgroup.component.css']
+  styleUrls: ['./npcgroup.component.css'],
+  providers: [
+    ArrayService,
+    {
+      provide: 'myArray',
+      useValue: []
+    }
+  ]
 })
 export class NpcgroupComponent implements OnInit, OnDestroy {
   // Reactive Form that will have a list of NPCs to battle.
@@ -25,10 +34,13 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private encountersHttp: EncounterHttpService,
-    private webId: WebidsService
+    private webId: WebidsService,
+    private arrayService: ArrayService
   ) { }
 
   ngOnInit(): void {
+    this.arrayService.myArray = this.dummy_array.slice()
+
     this.route.params
       .subscribe(
         (params: Params) =>{this.db_id = params['id']})
