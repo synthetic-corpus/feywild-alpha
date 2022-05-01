@@ -1,6 +1,9 @@
 <p>Accessing dummy data for {{ db_id }}</p>
 <app-npc
   *ngFor="let npc of npcs"
+  (npcChanged)="onUpdateNpc($event)"
+  (npcDuplicated)="onDuplicateNpc($event)"
+  (npcDeleted)="onDeleteNpc($event)"
   [id]="npc.web_element_id"
   [web_element_id]="npc.web_element_id"
   [name]="npc.name"

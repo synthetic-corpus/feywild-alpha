@@ -56,6 +56,20 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
     return mutated
   }
 
+  // The update, delete and Duplicate all update the array of NPCs,
+  // Then Save to DB... (this is only a plan right now)
+  onUpdateNpc(event){
+    console.log(event)
+  }
+
+  onDuplicateNpc(event){
+    console.log(event)
+  }
+
+  onDeleteNpc(event){
+    console.log(event)
+  }
+
   ngOnDestroy(): void {
       this.npcs.forEach(
         (element) => this.webId.remove(element.web_element_id)

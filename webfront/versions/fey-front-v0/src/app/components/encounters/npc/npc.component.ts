@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
 @Component({
@@ -7,6 +7,10 @@ import { SanitizeStringsService } from 'src/app/services/sanitize-strings.servic
   styleUrls: ['./npc.component.css']
 })
 export class NpcComponent implements OnInit {
+  @Output() npcChanged = new EventEmitter<{web_element_id: string, name: string, initiative: number, armor?: number, notes?: string}>()
+  @Output() npcDuplicated = new EventEmitter<string>()
+  @Output() npcDeleted = new EventEmitter<string>()
+
   @Input() web_element_id!: string
   @Input() name!: string
   @Input() initiative!: number
@@ -38,6 +42,21 @@ export class NpcComponent implements OnInit {
     this.toggleEdit()
     this.name = this.sanitizeString.sanitize(this.npcForm.value.nameFC)
     this.notes = this.sanitizeString.sanitize(this.npcForm.value.notesFC)
+    this.npcChanged.emit({
+      web_element_id: this.web_element_id,
+      name: this.name,
+      initiative: this.initiative,
+      armor: this.armor,
+      notes: this.notes
+    })
+  }
+
+  onDeleteMe(){
+    this.npcDeleted.emit(this.web_element_id)
+  }
+
+  onDuplicateMe(){
+    this.npcDuplicated.emit(this.web_element_id)
   }
 
 }
