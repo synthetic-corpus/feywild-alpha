@@ -9,7 +9,7 @@
   </mat-card-content>
   <!-- Buttons -->
   <button mat-flat-button color="primary" (click)="toggleEdit()">Edit</button>
-  <button mat-flat-button color="primary" (click)="onDuplicateMe()">Duplicate</button>
+  <button mat-flat-button color="primary" [disabled] = "maxed_out" (click)="onDuplicateMe()">Duplicate</button>
   <button mat-flat-button color="warn" (click)="onDeleteMe()">Trash</button>
 </mat-card>
 

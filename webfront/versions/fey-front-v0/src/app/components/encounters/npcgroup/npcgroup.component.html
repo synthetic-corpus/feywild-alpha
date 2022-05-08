@@ -4,6 +4,7 @@
   (npcChanged)="onUpdateNpc($event)"
   (npcDuplicated)="onDuplicateNpc($event)"
   (npcDeleted)="onDeleteNpc($event)"
+  [maxed_out]="npcs.length >= 12"
   [id]="npc.web_element_id"
   [web_element_id]="npc.web_element_id"
   [name]="npc.name"

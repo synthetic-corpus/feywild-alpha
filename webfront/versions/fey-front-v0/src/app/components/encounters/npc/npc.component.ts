@@ -11,6 +11,7 @@ export class NpcComponent implements OnInit {
   @Output() npcDuplicated = new EventEmitter<string>()
   @Output() npcDeleted = new EventEmitter<string>()
 
+  @Input() maxed_out!: boolean
   @Input() web_element_id!: string
   @Input() name!: string
   @Input() initiative!: number

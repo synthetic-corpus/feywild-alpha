@@ -12,7 +12,7 @@ const encounterSchema = new mongoose.Schema({
     _user_id: {type: ObjectId, required: true},
     _campaign_id: {type: ObjectId},
     name: {type: String, required: true},
-    npcs: {type: [encounterNPC], default: []}
+    npcs: {type: [encounterNPC], default: [],madItems: 12, description: "Maximum of 12 Npcs per encounter"}
 })
 
 export const EncounterModel = mongoose.model('Encounter',encounterSchema)
