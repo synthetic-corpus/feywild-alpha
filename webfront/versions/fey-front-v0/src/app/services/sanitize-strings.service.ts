@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SanitizeStringsService {
   // This service is for temporary input Sanitization.
-  // Will Eventually be replaced with form validators, but will work temporarily.
+  // This will be used to centralize custom string validators.
   constructor() { }
 
   sanitize(string: string){
@@ -14,5 +15,12 @@ export class SanitizeStringsService {
       return string.replaceAll(/[\<\>{}\-\=;\:]+/g,'')
     }
     return undefined
+  }
+
+  mustHaveLetters(){
+    return (control: AbstractControl): ValidationErrors | null =>{
+      const hasLetters: RegExp = /[a-zA-Z]/
+      return hasLetters.test(control.value) ? null : {badString: {value: control.value}}
+    }
   }
 }

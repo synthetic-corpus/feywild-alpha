@@ -27,6 +27,7 @@ import { InitiativeListComponent } from './components/run-encounters/initiative-
 import { NpcgroupComponent } from './components/encounters/npcgroup/npcgroup.component';
 import { PlayercharacterComponent } from './components/tents/playercharacter/playercharacter.component';
 import { NpcComponent } from './components/encounters/npc/npc.component';
+import { NpcaddComponent } from './components/encounters/npcadd/npcadd.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NpcComponent } from './components/encounters/npc/npc.component';
     InitiativeListComponent,
     NpcgroupComponent,
     PlayercharacterComponent,
-    NpcComponent
+    NpcComponent,
+    NpcaddComponent
   ],
   imports: [
     BrowserModule,

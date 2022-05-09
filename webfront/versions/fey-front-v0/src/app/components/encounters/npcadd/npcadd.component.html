@@ -1,0 +1,36 @@
+ <div *ngIf = "!maxed_out">
+  <!-- Only show either Button or if not maxed out already-->
+  <div *ngIf="adding === true">
+    <form [formGroup]="npcForm" (ngSubmit)="onAddNpc()">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput="name" formControlName="nameFC">
+        <mat-error *ngIf="!npcForm.get('nameFC').valid && npcForm.get('nameFC').touched">Must have Letters!</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Initiative</mat-label>
+        <input matInput formControlName="initiativeFC" type="number" [(ngModel)]="initiative">
+        <mat-error *ngIf="!npcForm.get('initiativeFC').valid && npcForm.get('initiativeFC').touched">Must have initiatvie!</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Armor</mat-label>
+        <input matInput formControlName="armorFC" type="number" [(ngModel)]="armor">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Notes</mat-label>
+        <textarea matInput formControlName="notesFC"></textarea>
+        <mat-error *ngIf="!npcForm.get('notesFC').valid && npcForm.get('notesFC').touched">Must have Letters!</mat-error>
+      </mat-form-field>
+      <button mat-flat-button color="secondary" [disabled]="!npcForm.valid" type="submit">Done!</button>
+    </form>
+  </div>
+  <div *ngIf = "!adding">
+    <button mat-flat-button color="primary" (click)="toggleAdding()">Add NPC!</button>
+  </div>
+</div>
+<div *ngIf = "maxed_out">
+  <!-- If maxed out....-->
+  <p>
+    Only a max of Twelve NPCs per encounter. Delete one to add more.
+  </p>
+</div>
