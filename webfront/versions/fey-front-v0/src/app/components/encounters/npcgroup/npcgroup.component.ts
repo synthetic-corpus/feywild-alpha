@@ -15,7 +15,7 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   // Reactive Form that will have a list of NPCs to battle.
   db_id!: string // Will be the DB's unique identifier or "new"
   encounter_name: string = 'My Next Encounter'
-  npcs!: {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[]
+  web_npcs!: {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[]
 
   // Dummy data
   dummy_array = [
@@ -36,7 +36,7 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
         (params: Params) =>{this.db_id = params['id']})
 
     // Dummy data
-    this.npcs = this.readyNpcs(this.dummy_array)
+    this.web_npcs = this.readyNpcs(this.dummy_array)
         /*
     this.encountersHttp.retrieveEncounter(this.db_id)
         .subscribe(
@@ -61,31 +61,48 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   // The update, delete and Duplicate all update the array of NPCs,
   // Then Save to DB... (this is only a plan right now)
   getElementIndex(object){
-    return this.npcs.findIndex((element)=>object.web_element_id === element.web_element_id)
+    return this.web_npcs.findIndex((element)=>object.web_element_id === element.web_element_id)
+  }
+
+  onCreateNpc(newNpc){
+    this.web_npcs.push(newNpc)
+    this.autoSave()
   }
 
   onUpdateNpc(object){
     //console.log(object)
     const index = this.getElementIndex(object)
-    this.npcs.splice(index,1,object)
+    this.web_npcs.splice(index,1,object)
+    this.autoSave()
   }
 
   onDuplicateNpc(web_element_id){
     //console.log(e)
-    const index = this.npcs.findIndex(element => element.web_element_id === web_element_id)
-    const pushThis = this.npcs[index]
+    const index = this.web_npcs.findIndex(element => element.web_element_id === web_element_id)
+    const pushThis = this.web_npcs[index]
     pushThis.web_element_id = this.webId.generate()
-    this.npcs.splice(index,0,pushThis)
+    this.web_npcs.splice(index,0,pushThis)
+    this.autoSave()
   }
 
   onDeleteNpc(web_element_id){
     //console.log(event)
-    const index = this.npcs.findIndex(element => element.web_element_id === web_element_id)
-    this.npcs.splice(index,1)
+    const index = this.web_npcs.findIndex(element => element.web_element_id === web_element_id)
+    this.web_npcs.splice(index,1)
+    this.autoSave()
+  }
+
+  autoSave(){
+    const npcs = this.web_npcs.map((element)=> {delete element.web_element_id; return element})
+    const saveThis = {
+      message: `would Save/update to mongoID ${this.db_id}`,
+      data: npcs
+    }
+    console.log(saveThis)
   }
 
   ngOnDestroy(): void {
-      this.npcs.forEach(
+      this.web_npcs.forEach(
         (element) => this.webId.remove(element.web_element_id)
       )
   }

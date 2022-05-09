@@ -1,10 +1,10 @@
 <p>Accessing dummy data for {{ db_id }}</p>
 <app-npc
-  *ngFor="let npc of npcs"
+  *ngFor="let npc of web_npcs"
   (npcChanged)="onUpdateNpc($event)"
   (npcDuplicated)="onDuplicateNpc($event)"
   (npcDeleted)="onDeleteNpc($event)"
-  [maxed_out]="npcs.length >= 12"
+  [maxed_out]="web_npcs.length >= 12"
   [id]="npc.web_element_id"
   [web_element_id]="npc.web_element_id"
   [name]="npc.name"
@@ -14,5 +14,6 @@
 >
 </app-npc>
 <app-npcadd
-[maxed_out]="npcs.length >= 12"
+  [maxed_out]="web_npcs.length >= 12"
+  (newNpc)="onCreateNpc($event)"
 ></app-npcadd>
