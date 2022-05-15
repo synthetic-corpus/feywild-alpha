@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WebidsService } from 'src/app/services/webids.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
@@ -8,7 +8,7 @@ import { SanitizeStringsService } from 'src/app/services/sanitize-strings.servic
   templateUrl: './newencounter.component.html',
   styleUrls: ['./newencounter.component.css']
 })
-export class NewencounterComponent implements OnInit {
+export class NewencounterComponent implements OnInit, OnDestroy {
   page: number = 0
 
   web_npcs: {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[]
@@ -73,4 +73,10 @@ export class NewencounterComponent implements OnInit {
     )
     // Navigate away
   }
+
+  ngOnDestroy(): void {
+    this.web_npcs.forEach(
+      (element) => this.webId.remove(element.web_element_id)
+    )
+}
 }
