@@ -1,0 +1,26 @@
+
+<form [formGroup]="encounterForm" (ngSubmit)="onSave()">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput="name" formControlName="nameFC">
+    <mat-error *ngIf="!encounterForm.get('encounterFC').valid && encounterForm.get('encounterFC').touched">Must have a Name!</mat-error>
+  </mat-form-field>
+  <app-npc
+    *ngFor="let npc of web_npcs"
+    (npcChanged)="onUpdateNpc($event)"
+    (npcDuplicated)="onDuplicateNpc($event)"
+    (npcDeleted)="onDeleteNpc($event)"
+    [maxed_out]="web_npcs.length >= 12"
+    [id]="npc.web_element_id"
+    [web_element_id]="npc.web_element_id"
+    [name]="npc.name"
+    [initiative]="npc.initiative"
+    [armor]="npc.ac"
+    [notes]="npc.notes"
+  >
+  </app-npc>
+  <app-npcadd
+    [maxed_out]="web_npcs.length >= 12"
+    (newNpc)="onCreateNpc($event)"
+  ></app-npcadd>
+</form>

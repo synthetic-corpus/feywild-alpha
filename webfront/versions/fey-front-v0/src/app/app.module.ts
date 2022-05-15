@@ -28,6 +28,7 @@ import { NpcgroupComponent } from './components/encounters/npcgroup/npcgroup.com
 import { PlayercharacterComponent } from './components/tents/playercharacter/playercharacter.component';
 import { NpcComponent } from './components/encounters/npc/npc.component';
 import { NpcaddComponent } from './components/encounters/npcadd/npcadd.component';
+import { NewencounterComponent } from './components/encounters/newencounter/newencounter.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { NpcaddComponent } from './components/encounters/npcadd/npcadd.component
     NpcgroupComponent,
     PlayercharacterComponent,
     NpcComponent,
-    NpcaddComponent
+    NpcaddComponent,
+    NewencounterComponent
   ],
   imports: [
     BrowserModule,
