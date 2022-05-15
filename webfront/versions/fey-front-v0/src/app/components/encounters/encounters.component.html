@@ -3,6 +3,6 @@
 </a>
 <div *ngFor="let encounter of myEncounters">
   <a [routerLink]="[encounter._id]">
-    <mat-card>{{ encounter.name }}</mat-card>
+    <mat-card>{{ encounter.name }} <button mat-icon-button color='warn' (click)="onDeleteEncounter(encounter._id)"><mat-icon>delete</mat-icon></button></mat-card>
   </a>
 </div>

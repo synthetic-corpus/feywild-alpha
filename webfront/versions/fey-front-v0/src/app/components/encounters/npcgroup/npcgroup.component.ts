@@ -2,7 +2,6 @@ import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
-import { ArrayService } from 'src/app/services/array.service';
 import { EncounterHttpService } from 'src/app/services/http/encounter-http.service';
 import { WebidsService } from 'src/app/services/webids.service';
 
@@ -15,15 +14,8 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   // Reactive Form that will have a list of NPCs to battle.
   db_id!: string // Will be the DB's unique identifier or "new"
   encounter_name: string = 'My Next Encounter'
-  web_npcs!: {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[]
+  web_npcs: {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[] =[]
 
-  // Dummy data
-  dummy_array = [
-    {name: 'skeleton',initiative: 0, ac: 10},
-    {name: 'skeleton',initiative: 0, ac: 10},
-    {name: 'evil necromancer',initiative: 4, ac: 10, notes: "Is the Boss Fight"},
-    {name: 'dungeon event',initiative: 6, notes: "not a monster, but counts lair events"}
-  ]
   constructor(
     private route: ActivatedRoute,
     private encountersHttp: EncounterHttpService,
@@ -35,18 +27,18 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
       .subscribe(
         (params: Params) =>{this.db_id = params['id']})
 
-    // Dummy data
-    this.web_npcs = this.readyNpcs(this.dummy_array)
-        /*
     this.encountersHttp.retrieveEncounter(this.db_id)
         .subscribe(
           (reply: HttpReplyMessage) =>{
+            this.web_npcs = reply.data.npcs as {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[]
+            this.encounter_name = reply.data.name
             console.log()
           }
-        )*/
+        )
   }
 
   readyNpcs(npc_array: {web_element_id?:string,name: string, initiative: number, ac?: number, notes?: string}[]){
+    // Adds a unqiue ID for each HTML element.
     const mutated = npc_array.map(
       (element) => {
         return element = {
@@ -93,12 +85,14 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   }
 
   autoSave(){
+    // Everytime a change is made it will auto-save.
     const npcs = this.web_npcs.map((element)=> {delete element.web_element_id; return element})
-    const saveThis = {
-      message: `would Save/update to mongoID ${this.db_id}`,
-      data: npcs
-    }
-    console.log(saveThis)
+    this.encountersHttp.updateEncounter(this.db_id,{npcs})
+      .subscribe(
+        (res: HttpReplyMessage)=>{
+          console.log({status: res.code, message: res.message});
+        }
+      )
   }
 
   ngOnDestroy(): void {

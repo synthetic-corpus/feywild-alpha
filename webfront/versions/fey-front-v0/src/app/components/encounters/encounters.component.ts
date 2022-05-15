@@ -16,6 +16,13 @@ export class EncountersComponent implements OnInit {
     private encountersHttp: EncounterHttpService
   ) { }
 
+  onDeleteEncounter(db_id: string){
+    this.encountersHttp.deleteEncounter(db_id)
+      .subscribe(
+        (res)=>{console.log(res)}
+      )
+  }
+
   ngOnInit(): void {
     this.encountersHttp.retrieveEncounters()
       .subscribe(
