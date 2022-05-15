@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WebidsService } from 'src/app/services/webids.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newencounter',
@@ -9,19 +10,19 @@ import { SanitizeStringsService } from 'src/app/services/sanitize-strings.servic
   styleUrls: ['./newencounter.component.css']
 })
 export class NewencounterComponent implements OnInit, OnDestroy {
-  page: number = 0
 
-  web_npcs: {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[]
+  web_npcs: {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[] = []
 
   encounterForm: FormGroup
   constructor(
     private webId: WebidsService,
-    private sanitizeString: SanitizeStringsService
+    private sanitizeString: SanitizeStringsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.encounterForm =  new FormGroup({
-      'encounterFC': new FormControl([
+      'encounterFC': new FormControl('',[
         Validators.required,
         Validators.minLength(3),
         this.sanitizeString.mustHaveLetters()
@@ -71,7 +72,7 @@ export class NewencounterComponent implements OnInit, OnDestroy {
         data: saveThis
       }
     )
-    // Navigate away
+    this.router.navigate(['/encounters'])
   }
 
   ngOnDestroy(): void {
