@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WebidsService } from 'src/app/services/webids.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
+import { EncounterHttpService } from 'src/app/services/http/encounter-http.service';
 import { Router } from '@angular/router';
+import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
   selector: 'app-newencounter',
@@ -17,7 +19,9 @@ export class NewencounterComponent implements OnInit, OnDestroy {
   constructor(
     private webId: WebidsService,
     private sanitizeString: SanitizeStringsService,
-    private router: Router
+    private router: Router,
+    private http: EncounterHttpService,
+    private campaign: CampaignService
   ) { }
 
   ngOnInit(): void {
@@ -60,9 +64,10 @@ export class NewencounterComponent implements OnInit, OnDestroy {
 
   onSave(){
     const npcs = this.web_npcs.map((element)=> {delete element.web_element_id; return element})
-    const name = this.sanitizeString.sanitize(this.encounterForm.value.nameFC)
+    const name = this.sanitizeString.sanitize(this.encounterForm.value.encounterFC)
+    const _campaign_id = this.campaign.getActiveCampaignId()
     const saveThis = {
-      _campaign_id: 'This Campaign',
+      _campaign_id,
       name,
       npcs
     }
@@ -72,6 +77,12 @@ export class NewencounterComponent implements OnInit, OnDestroy {
         data: saveThis
       }
     )
+    this.http.createEncounter(saveThis)
+      .subscribe(
+        (res:any)=>{
+          console.log(res.body)
+        }
+      )
     this.router.navigate(['/encounters'])
   }
 

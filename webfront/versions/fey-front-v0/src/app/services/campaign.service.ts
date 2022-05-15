@@ -23,4 +23,8 @@ export class CampaignService {
       )
   }
 
+  getActiveCampaignId(){
+    return this.currentCampaign._id
+  }
+
 }

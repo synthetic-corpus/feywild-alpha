@@ -1,4 +1,8 @@
 <a [routerLink]="['/new','encounter']">
   <mat-card>Make New!</mat-card>
 </a>
-
+<div *ngFor="let encounter of myEncounters">
+  <a [routerLink]="[encounter._id]">
+    <mat-card>{{ encounter.name }}</mat-card>
+  </a>
+</div>
