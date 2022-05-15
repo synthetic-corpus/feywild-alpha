@@ -6,6 +6,7 @@
     <mat-error *ngIf="!encounterForm.get('encounterFC').valid && encounterForm.get('encounterFC').touched">Must have a Name!</mat-error>
   </mat-form-field>
   <button mat-flat-button color="secondary" type="submit" [disabled]="web_npcs.length === 0">Save Encounter!</button>
+</form>
   <app-npc
     *ngFor="let npc of web_npcs"
     (npcChanged)="onUpdateNpc($event)"
@@ -24,4 +25,4 @@
     [maxed_out]="web_npcs.length >= 12"
     (newNpc)="onCreateNpc($event)"
   ></app-npcadd>
-</form>
+
