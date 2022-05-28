@@ -10,9 +10,8 @@ import { TentWeb } from '../../../interfaces/tent.interface'
 })
 export class PlayercharacterComponent implements OnInit {
   @Output() playerChanged = new EventEmitter<TentWeb>()
-  @Output() playerDeleted = new EventEmitter<String>
+  @Output() playerDeleted = new EventEmitter<String>()
 
-  @Input() maxed_out!: boolean
   @Input() web_element_id!: string
   @Input() player!: string
   @Input() character!: string

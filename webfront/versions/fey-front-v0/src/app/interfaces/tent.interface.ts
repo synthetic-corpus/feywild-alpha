@@ -1,7 +1,7 @@
 export interface TentWeb {
-  web_element_id: String,
-  player: String,
-  character: String,
+  web_element_id: string,
+  player: string,
+  character: string,
   initiative: number,
   spell_dc?: number,
   passive_perception: number,
@@ -10,8 +10,8 @@ export interface TentWeb {
 }
 
 export interface TentPatch {
-  player?: String,
-  character?: String,
+  player?: string,
+  character?: string,
   initiative?: number,
   spell_dc?: number,
   passive_perception?: number,
