@@ -30,6 +30,7 @@ export class TentGroupComponent implements OnInit {
   }
 
   readyPlayers(player_array): TentWeb[] {
+    // Ads a unique identifer to each tent that's unique for the HTML app.
     const mutated: TentWeb[] = player_array.map(
       (element) => {
         return element = {
@@ -46,14 +47,27 @@ export class TentGroupComponent implements OnInit {
   }
 
   onUpdatePlayer(object){
+    // Removes keys that can't be part of a patch object. Saves Them
+    // updates array on front end.
     const index = this.getElementIndex(object)
     this.web_players.splice(index,1,object)
-    // save tent
+    const db_id = object._id
+    delete object._id
+    delete object._user_id
+    this.tentHttpService.updateTent(db_id,object)
+      .subscribe(
+        (reply) => console.log(reply)
+      )
   }
 
   onDeletePlayer(web_element_id){
+    // Deletes by access the db_id as bracket notation.
     const index = this.web_players.findIndex(element => element.web_element_id === web_element_id)
+    const db_id = this.web_players[index]["_id"]
     this.web_players.splice(index,1)
-    // Delete the player
+    this.tentHttpService.deleteTent(db_id)
+      .subscribe(
+        (reply) => console.log(reply)
+      )
   }
 }
