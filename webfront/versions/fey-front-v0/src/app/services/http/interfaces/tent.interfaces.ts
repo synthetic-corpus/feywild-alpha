@@ -1,4 +1,6 @@
 export interface TentHttp {
+  _id: string,
+  _user_id: string,
   player: string,
   character: string,
   initiative: number,

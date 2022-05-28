@@ -1,4 +1,6 @@
 export interface TentWeb {
+  _id: string,
+  _user_id: string,
   web_element_id: string,
   player: string,
   character: string,

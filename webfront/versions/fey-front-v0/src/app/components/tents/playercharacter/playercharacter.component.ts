@@ -12,6 +12,8 @@ export class PlayercharacterComponent implements OnInit {
   @Output() playerChanged = new EventEmitter<TentWeb>()
   @Output() playerDeleted = new EventEmitter<String>()
 
+  @Input() _id: string
+  @Input() _user_id: string
   @Input() web_element_id!: string
   @Input() player!: string
   @Input() character!: string
@@ -49,6 +51,8 @@ export class PlayercharacterComponent implements OnInit {
     this.character = this.sanitizeString.sanitize(this.playerForm.value.characterFC)
     this.notes = this.sanitizeString.sanitize(this.playerForm.value.notes)
     this.playerChanged.emit({
+      _id: this._id,
+      _user_id: this._user_id,
       web_element_id: this.web_element_id,
       player: this.player,
       character: this.character,

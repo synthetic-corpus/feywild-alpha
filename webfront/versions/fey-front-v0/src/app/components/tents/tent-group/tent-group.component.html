@@ -1,6 +1,8 @@
 <h2>This is the Tent Group!</h2>
 <app-playercharacter
   *ngFor = "let tent of web_players"
+  [_id] = "tent._id"
+  [_user_id] = "tent._user_id"
   [web_element_id]="tent.web_element_id"
   [player] = "tent.player"
   [character]="tent.character"
