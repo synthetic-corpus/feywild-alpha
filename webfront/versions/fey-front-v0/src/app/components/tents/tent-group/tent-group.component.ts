@@ -12,7 +12,7 @@ import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
 })
 export class TentGroupComponent implements OnInit, OnDestroy {
 
-  web_players: TentWeb[]
+  web_players: TentWeb[] = []
 
   constructor(
     private tentHttpService: TentHttpService,
@@ -23,7 +23,7 @@ export class TentGroupComponent implements OnInit, OnDestroy {
     this.tentHttpService.retrieveTents()
       .subscribe(
         (reply: HttpReplyMessage) => {
-          const players_http = reply.data.tents as TentHttp[]
+          const players_http = reply.data as TentHttp[]
           this.web_players = this.readyPlayers(players_http)
         }
       )
@@ -76,7 +76,7 @@ export class TentGroupComponent implements OnInit, OnDestroy {
     this.tentHttpService.retrieveTents()
       .subscribe(
         (reply: HttpReplyMessage) => {
-          const players_http = reply.data.tents as TentHttp[]
+          const players_http = reply.data as TentHttp[]
           this.web_players = this.readyPlayers(players_http)
         }
       )

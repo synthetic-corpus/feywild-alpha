@@ -39,18 +39,18 @@ export class NewTentComponent implements OnInit {
         Validators.min(-10),
         this.sanitize.mustBeInterger()
       ]),
-      passive_perceptionFC: new FormControl(0,[
+      passive_perceptionFC: new FormControl(10,[
         Validators.required,
-        Validators.max(10),
+        Validators.max(20),
         Validators.min(-10),
         this.sanitize.mustBeInterger()
       ]),
-      spell_dc: new FormControl(null,[
+      spell_dcFC: new FormControl(null,[
         Validators.max(22),
         Validators.min(-10),
         this.sanitize.mustBeInterger()
       ]),
-      acFC: new FormControl(0,[
+      acFC: new FormControl(10,[
         Validators.required,
         Validators.max(30),
         Validators.min(0),
@@ -82,8 +82,8 @@ export class NewTentComponent implements OnInit {
       newCharacterObject.notes = notes
     }
 
-    if (this.newPlayerCharacter.value.spell_dc){
-      newCharacterObject.spell_dc = this.newPlayerCharacter.value.spell_dc
+    if (this.newPlayerCharacter.value.spell_dcFC){
+      newCharacterObject.spell_dc = this.newPlayerCharacter.value.spell_dcFC
     }
     this.tentHttpservice.createTent(newCharacterObject)
       .subscribe(
