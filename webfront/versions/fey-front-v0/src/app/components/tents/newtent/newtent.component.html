@@ -1,1 +1,42 @@
-<p>newttent works!</p>
+<!-- Only show either Button or if not maxed out already-->
+<div>
+  <form [formGroup]="newPlayerCharacter" (ngSubmit)="onSave()">
+    <mat-form-field appearance="fill">
+      <mat-label>Whose the Player?</mat-label>
+      <input matInput="name" formControlName="nameFC">
+      <mat-error *ngIf="!newPlayerCharacter.get('playernameFC').valid && newPlayerCharacter.get('playernameFC').touched">Must have Letters!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>What's the Character Name?</mat-label>
+      <input matInput="name" formControlName="characterNameFC">
+      <mat-error *ngIf="!newPlayerCharacter.get('characterNameFC').valid && newPlayerCharacter.get('characterNameFC').touched">Must have Letters!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Initiative</mat-label>
+      <input matInput formControlName="initiativeFC" type="number">
+      <mat-error *ngIf="!newPlayerCharacter.get('initiativeFC').valid && newPlayerCharacter.get('initiativeFC').touched">Must have initiatvie!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Passive Perception</mat-label>
+      <input matInput formControlName="passive_perceptionFC" type="number">
+      <mat-error *ngIf="!newPlayerCharacter.get('passive_perceptionFC').valid && newPlayerCharacter.get('passive_perceptionFC').touched">Must have Passive Perception!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Passive Perception</mat-label>
+      <input matInput formControlName="spell_dcFC" type="number">
+      <mat-hint *ngIf="newPlayerCharacter.get('spell_dcFC').touched">Spell DC is optional. Max is 22. Is your Character some kind of <em>god?</em></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Armor</mat-label>
+      <input matInput formControlName="acFC" type="number">
+      <mat-error *ngIf="!newPlayerCharacter.get('acFC').valid && newPlayerCharacter.get('acFC').touched">Armor must be between 0 and 30</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="notesFC"></textarea>
+      <mat-hint *ngIf="newPlayerCharacter.get('notesFC').touched">This Field is optional.</mat-hint>
+      <mat-error *ngIf="!newPlayerCharacter.get('notesFC').valid">Must have Letters!</mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="secondary" [disabled]="!newPlayerCharacter.valid" type="submit">Done!</button>
+  </form>
+</div>

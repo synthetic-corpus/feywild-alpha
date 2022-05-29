@@ -46,14 +46,14 @@ export class NewTentComponent implements OnInit {
         this.sanitize.mustBeInterger()
       ]),
       spell_dc: new FormControl(null,[
-        Validators.max(10),
+        Validators.max(22),
         Validators.min(-10),
         this.sanitize.mustBeInterger()
       ]),
       acFC: new FormControl(0,[
         Validators.required,
-        Validators.max(10),
-        Validators.min(-10),
+        Validators.max(30),
+        Validators.min(0),
         this.sanitize.mustBeInterger()
       ]),
       notesFC: new FormControl(null,[
@@ -90,6 +90,7 @@ export class NewTentComponent implements OnInit {
         (reply) => {
           console.log(reply)
           this.newPlayer.emit(newCharacterObject) // When received, triggers a reload.
+          this.newPlayerCharacter.reset()
         }
       )
   }
