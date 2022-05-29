@@ -30,7 +30,7 @@ import { NpcComponent } from './components/encounters/npc/npc.component';
 import { NpcaddComponent } from './components/encounters/npcadd/npcadd.component';
 import { NewencounterComponent } from './components/encounters/newencounter/newencounter.component';
 import { TentGroupComponent } from './components/tents/tent-group/tent-group.component';
-import { NewttentComponent } from './components/tents/newtent/newtent.component';
+import { NewTentComponent } from './components/tents/newtent/newtent.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { NewttentComponent } from './components/tents/newtent/newtent.component'
     NpcaddComponent,
     NewencounterComponent,
     TentGroupComponent,
-    NewttentComponent
+    NewTentComponent
   ],
   imports: [
     BrowserModule,

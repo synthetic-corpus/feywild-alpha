@@ -9,7 +9,7 @@ import { SanitizeStringsService } from 'src/app/services/sanitize-strings.servic
   templateUrl: './newtent.component.html',
   styleUrls: ['./newtent.component.css']
 })
-export class NewttentComponent implements OnInit {
+export class NewTentComponent implements OnInit {
 
   @Output() newPlayer = new EventEmitter<NewTent>()
 
