@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TentWeb } from 'src/app/interfaces/tent.interface';
 import { TentHttpService } from 'src/app/services/http/tent-http.service';
 import { TentHttp } from 'src/app/services/http/interfaces/tent.interfaces';
@@ -10,7 +10,7 @@ import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
   templateUrl: './tent-group.component.html',
   styleUrls: ['./tent-group.component.css']
 })
-export class TentGroupComponent implements OnInit {
+export class TentGroupComponent implements OnInit, OnDestroy {
 
   web_players: TentWeb[]
 
@@ -80,5 +80,11 @@ export class TentGroupComponent implements OnInit {
           this.web_players = this.readyPlayers(players_http)
         }
       )
+  }
+
+  ngOnDestroy(): void {
+    this.web_players.forEach(
+      (element) => this.webId.remove(element.web_element_id)
+    )
   }
 }
