@@ -49,7 +49,7 @@ export class PlayercharacterComponent implements OnInit {
   onSubmit(){
     this.player = this.sanitizeString.sanitize(this.playerForm.value.playerFC)
     this.character = this.sanitizeString.sanitize(this.playerForm.value.characterFC)
-    this.notes = this.sanitizeString.sanitize(this.playerForm.value.notes)
+    this.notes = this.sanitizeString.sanitize(this.playerForm.value.notesFC)
     this.playerChanged.emit({
       _id: this._id,
       _user_id: this._user_id,

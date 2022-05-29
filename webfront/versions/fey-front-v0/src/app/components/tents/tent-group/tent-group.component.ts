@@ -54,6 +54,8 @@ export class TentGroupComponent implements OnInit, OnDestroy {
     const db_id = object._id
     delete object._id
     delete object._user_id
+    delete object.web_element_id
+    console.log("Db_id = ",db_id)
     this.tentHttpService.updateTent(db_id,object)
       .subscribe(
         (reply) => console.log(reply)
