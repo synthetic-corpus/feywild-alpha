@@ -1,6 +1,6 @@
-export interface TentHttp {
-  _id: string,
-  _user_id: string,
+// Used to reflect what is sent and recieved from HTTP
+
+export interface NewTent {
   player: string,
   character: string,
   initiative: number,
@@ -8,6 +8,11 @@ export interface TentHttp {
   passive_perception: number,
   ac: number,
   notes?: string
+}
+
+export interface TentHttp extends NewTent {
+  _id: string,
+  _user_id: string
 }
 
 export interface TentPatch {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TentHttp, TentPatch } from './interfaces/tent.interfaces';
+import { TentPatch, NewTent } from './interfaces/tent.interfaces';
 import { environment as env } from '../../../environments/environment';
 
 
@@ -11,7 +11,7 @@ export class TentHttpService {
 
   constructor(private http: HttpClient) { }
 
-  createTent(newTent: TentHttp ){
+  createTent(newTent: NewTent ){
     return this.http.post(`${env.auth.apiUri}/tent/`,newTent)
   }
 

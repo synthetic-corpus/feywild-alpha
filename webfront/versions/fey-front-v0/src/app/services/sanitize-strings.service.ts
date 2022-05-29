@@ -23,4 +23,11 @@ export class SanitizeStringsService {
       return hasLetters.test(control.value) ? null : {badString: {value: control.value}}
     }
   }
+
+  mustBeInterger() {
+    return (control: AbstractControl): ValidationErrors | null =>{
+      const isInterger: RegExp = /[-?[0-9]{0,2}/
+      return isInterger.test(control.value) ? null : {badString: {value: control.value}}
+    }
+  }
 }
