@@ -70,4 +70,15 @@ export class TentGroupComponent implements OnInit {
         (reply) => console.log(reply)
       )
   }
+
+  onReload(){
+    // When a new Player is added, reload all players
+    this.tentHttpService.retrieveTents()
+      .subscribe(
+        (reply: HttpReplyMessage) => {
+          const players_http = reply.data.tents as TentHttp[]
+          this.web_players = this.readyPlayers(players_http)
+        }
+      )
+  }
 }

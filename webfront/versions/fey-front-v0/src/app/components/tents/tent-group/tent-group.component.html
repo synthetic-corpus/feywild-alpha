@@ -14,3 +14,8 @@
   (playerChanged) = "onUpdatePlayer($event)"
   (playerDeleted) = "onDeletePlayer($event)"
 ></app-playercharacter>
+<app-newtent
+  *ngIf = "web_players.length < 8"
+  (newPlayer) = "onReload()"
+>
+</app-newtent>
