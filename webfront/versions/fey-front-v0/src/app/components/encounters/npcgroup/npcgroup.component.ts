@@ -25,7 +25,8 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params
       .subscribe(
-        (params: Params) =>{this.db_id = params['id']})
+        (params: Params) =>{this.db_id = params['id']}
+      )
 
     this.encountersHttp.retrieveEncounter(this.db_id)
         .subscribe(
