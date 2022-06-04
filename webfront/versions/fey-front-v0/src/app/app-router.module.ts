@@ -5,6 +5,7 @@ import { EncountersComponent } from './components/encounters/encounters.componen
 import { TentGroupComponent } from './components/tents/tent-group/tent-group.component';
 import { NpcgroupComponent } from './components/encounters/npcgroup/npcgroup.component';
 import { NewencounterComponent } from './components/encounters/newencounter/newencounter.component';
+import { InitiativeListComponent } from './components/run-encounters/initiative-list/initiative-list.component';
 
 const appRoutes: Routes = [
 
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, pathMatch: 'full' },
   { path: 'encounters', component: EncountersComponent},
   { path: 'encounters/:id', component: NpcgroupComponent},
+  { path: 'encounters/:id/run', component: InitiativeListComponent},
   { path: 'tents', component: TentGroupComponent},
   { path: 'new', children: [
     {path: 'encounter', component: NewencounterComponent, pathMatch: 'full'}

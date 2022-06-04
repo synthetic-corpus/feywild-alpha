@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
 import { EncounterHttpService } from 'src/app/services/http/encounter-http.service';
+import { TentHttp } from 'src/app/services/http/interfaces/tent.interfaces';
 import { TentHttpService } from 'src/app/services/http/tent-http.service'
 import { WebidsService } from 'src/app/services/webids.service';
 
@@ -11,7 +13,7 @@ import { WebidsService } from 'src/app/services/webids.service';
 })
 export class InitiativeListComponent implements OnInit {
   db_id!: string
-  iniative: {web_element_id: string, name: string, roll: number}[]
+  init_list: {web_element_id: string, name: string, roll: number}[] = []
 
   constructor(
     private route: ActivatedRoute,
@@ -28,17 +30,44 @@ export class InitiativeListComponent implements OnInit {
 
       this.encountersHttp.retrieveEncounter(this.db_id)
         .subscribe(
-          ()=>{
+          (reply: HttpReplyMessage)=>{
             // get the monsters. Roll their init. Add to Array.
+            reply.data.npcs.forEach(
+              (npc: {name: string, initiative: number, ac?: number, notes?: number}) => {
+                const roll: number = this.rollInit(npc.initiative)
+                const nextNpc = {
+                  name: npc.name,
+                  roll,
+                  web_element_id: this.webId.generate()
+                }
+                this.init_list.push(nextNpc)
+                this.init_list.sort((a,b) => {return b.roll - a.roll})
+              }
+            )
           }
         )
 
       this.tentHttp.retrieveTents()
         .subscribe(
-          ()=>{
-            // get the Player characters Roll their init. Add to array.
+          (reply: HttpReplyMessage)=>{
+            // Get the players. Roll their init. Add To array.
+            reply.data.forEach(
+              (element: TentHttp) => {
+                const roll = this.rollInit(element.initiative)
+                const nextPlayer = {
+                  name: element.character,
+                  roll,
+                  web_element_id: this.webId.generate()
+                }
+                this.init_list.push(nextPlayer)
+                this.init_list.sort((a,b) => {return b.roll - a.roll})
+              }
+            )
           }
         )
+
+        this.init_list.sort((a,b) => {return b.roll - a.roll})
+        console.log(this.init_list)
   }
 
   rollInit(modifer: number){
