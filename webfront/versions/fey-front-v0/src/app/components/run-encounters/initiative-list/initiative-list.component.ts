@@ -13,7 +13,7 @@ import { WebidsService } from 'src/app/services/webids.service';
 })
 export class InitiativeListComponent implements OnInit {
   db_id!: string
-  init_list: {web_element_id: string, name: string, roll: number}[] = []
+  init_list: {web_element_id: string, name: string, roll: number, active: boolean}[] = []
 
   constructor(
     private route: ActivatedRoute,
@@ -34,14 +34,7 @@ export class InitiativeListComponent implements OnInit {
             // get the monsters. Roll their init. Add to Array.
             reply.data.npcs.forEach(
               (npc: {name: string, initiative: number, ac?: number, notes?: number}) => {
-                const roll: number = this.rollInit(npc.initiative)
-                const nextNpc = {
-                  name: npc.name,
-                  roll,
-                  web_element_id: this.webId.generate()
-                }
-                this.init_list.push(nextNpc)
-                this.init_list.sort((a,b) => {return b.roll - a.roll})
+                this.addAndSort(npc.initiative,npc.name)
               }
             )
           }
@@ -53,14 +46,7 @@ export class InitiativeListComponent implements OnInit {
             // Get the players. Roll their init. Add To array.
             reply.data.forEach(
               (element: TentHttp) => {
-                const roll = this.rollInit(element.initiative)
-                const nextPlayer = {
-                  name: element.character,
-                  roll,
-                  web_element_id: this.webId.generate()
-                }
-                this.init_list.push(nextPlayer)
-                this.init_list.sort((a,b) => {return b.roll - a.roll})
+                this.addAndSort(element.initiative,element.character)
               }
             )
           }
@@ -87,5 +73,27 @@ export class InitiativeListComponent implements OnInit {
     return Math.floor(Math.random() * (21 - 1)) + 1
   }
 
+  addAndSort(init_mod,name){
+    // takes in a name and init_modifiers.
+    // Appends to init list and sorts it.
+    const roll: number = this.rollInit(init_mod)
+    const nextChar = {
+      name,
+      roll,
+      web_element_id: this.webId.generate(),
+      active: true
+    }
+    this.init_list.push(nextChar)
+    this.init_list.sort((a,b) => {return b.roll - a.roll})
+  }
 
+  onToggleActive(web_element_id: string){
+    const location = this.init_list.findIndex((element)=>{return element.web_element_id === web_element_id})
+    this.init_list[location].active ? this.init_list[location].active = false : this.init_list[location].active = true
+  }
+
+  onDeleteElement(web_element_id:string){
+    const location = this.init_list.findIndex((element)=>{return element.web_element_id === web_element_id})
+    this.init_list.splice(location,1)
+  }
 }

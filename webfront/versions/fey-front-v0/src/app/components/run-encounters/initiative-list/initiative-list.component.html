@@ -1,7 +1,7 @@
 <mat-list>
   <mat-list-item *ngFor="let combatant of init_list">
-    <span matline>{{ combatant.name}} - {{ combatant.roll }}</span>
-    <button mat-icon-button color="warn">
+    <span matline [ngClass]="!combatant.active ? 'inactive' : ''" (click)="onToggleActive(combatant.web_element_id)">{{ combatant.name}} - {{ combatant.roll }}</span>
+    <button mat-icon-button color="warn" (click)="onDeleteElement(combatant.web_element_id)">
       <mat-icon matListIcon>delete</mat-icon>
     </button>
   </mat-list-item>
