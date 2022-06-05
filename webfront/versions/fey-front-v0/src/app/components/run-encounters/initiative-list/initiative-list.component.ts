@@ -1,28 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
 import { EncounterHttpService } from 'src/app/services/http/encounter-http.service';
 import { TentHttp } from 'src/app/services/http/interfaces/tent.interfaces';
 import { TentHttpService } from 'src/app/services/http/tent-http.service'
 import { WebidsService } from 'src/app/services/webids.service';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
 @Component({
   selector: 'app-initiative-list',
   templateUrl: './initiative-list.component.html',
   styleUrls: ['./initiative-list.component.css']
 })
-export class InitiativeListComponent implements OnInit {
+export class InitiativeListComponent implements OnInit, OnDestroy {
   db_id!: string
   init_list: {web_element_id: string, name: string, roll: number, active: boolean}[] = []
+  addQuickie: FormGroup
 
   constructor(
     private route: ActivatedRoute,
     private encountersHttp: EncounterHttpService,
     private tentHttp: TentHttpService,
-    private webId: WebidsService
+    private webId: WebidsService,
+    private sanitizeString: SanitizeStringsService
   ) { }
 
   ngOnInit(): void {
+    this.addQuickie = new FormGroup({
+      'nameFC': new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        this.sanitizeString.mustHaveLetters()
+      ]),
+      'initiativeFC': new FormControl(0,[Validators.required])
+    })
+
     this.route.params
       .subscribe(
         (params: Params) => {this.db_id = params['id']}
@@ -95,5 +107,20 @@ export class InitiativeListComponent implements OnInit {
   onDeleteElement(web_element_id:string){
     const location = this.init_list.findIndex((element)=>{return element.web_element_id === web_element_id})
     this.init_list.splice(location,1)
+  }
+
+  onSubmitQuickie(){
+    const name = this.sanitizeString.sanitize(this.addQuickie.value.nameFC)
+    const init_mod = this.addQuickie.value.initiativeFC
+    this.addAndSort(name,init_mod)
+    this.addQuickie.reset()
+  }
+
+  ngOnDestroy(): void {
+    this.init_list.forEach(
+      (element) => {
+        this.webId.remove(element.web_element_id)
+      }
+    )
   }
 }
