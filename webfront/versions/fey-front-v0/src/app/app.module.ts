@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRouterModule } from './app-router.module';
@@ -61,6 +62,7 @@ import { NewTentComponent } from './components/tents/newtent/newtent.component';
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
+    MatListModule,
     AppRouterModule,
     HttpClientModule,
     ReactiveFormsModule,
