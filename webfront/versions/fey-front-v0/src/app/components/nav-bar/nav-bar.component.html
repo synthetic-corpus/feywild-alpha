@@ -1,5 +1,10 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+    <a routerLink="">
+      <button mat-fab color="primary">
+        <mat-icon>home</mat-icon>
+      </button>
+    </a>
     <span>Tent Card The APP</span>
     <span class="nav-bar-spacer"></span>
       <button mat-button *ngIf="userReady == false" (click)="addSelf()">Click Here to Complete Sign up</button>
@@ -17,12 +22,6 @@
       </mat-icon>
     </button>
     <mat-menu #user="matMenu">
-      <a routerLink="">
-        <button mat-menu-button>
-          <mat-icon>home</mat-icon>
-          <span>Home</span>
-        </button>
-      </a>
       <button mat-menu-item>
         <mat-icon>map</mat-icon>
         <span>Add Campaign</span>

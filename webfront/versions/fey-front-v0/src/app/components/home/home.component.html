@@ -1,8 +1,6 @@
 
-<a routerLink="/encounters">
-  <mat-card>Encounters</mat-card>
-</a>
-<a routerLink="/tents">
-  <mat-card>Tents</mat-card>
-</a>
-<mat-card>Link Three</mat-card>
+<mat-grid-list cols="1" rowHeight="1:.5">
+  <a routerLink="/encounters"><mat-grid-tile>Encounters</mat-grid-tile></a>
+  <mat-divider></mat-divider>
+  <a routerLink="/tents"><mat-grid-tile>Tents</mat-grid-tile></a>
+</mat-grid-list>
