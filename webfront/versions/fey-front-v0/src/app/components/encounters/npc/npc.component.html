@@ -7,10 +7,13 @@
   <mat-card-content *ngIf="notes">
     {{ notes }}
   </mat-card-content>
-  <!-- Buttons -->
-  <button mat-flat-button color="primary" (click)="toggleEdit()">Edit</button>
-  <button mat-flat-button color="primary" [disabled] = "maxed_out" (click)="onDuplicateMe()">Duplicate</button>
-  <button mat-flat-button color="warn" (click)="onDeleteMe()">Trash</button>
+  <mat-card-actions>
+    <!-- Edit, Duplicate, delete-->
+    <button mat-button color="primary" (click)="toggleEdit()"><mat-icon>edit</mat-icon></button>
+    <button mat-button color="primary" [disabled] = "maxed_out" (click)="onDuplicateMe()"><mat-icon>file_copy</mat-icon></button>
+    <button mat-button color="warn" (click)="onDeleteMe()"><mat-icon>delete</mat-icon></button>
+  </mat-card-actions>
+
 </mat-card>
 
 <div *ngIf="editting === true">
