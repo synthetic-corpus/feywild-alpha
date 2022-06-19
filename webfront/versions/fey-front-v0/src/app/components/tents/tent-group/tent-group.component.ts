@@ -50,13 +50,13 @@ export class TentGroupComponent implements OnInit, OnDestroy {
     // Removes keys that can't be part of a patch object. Saves Them
     // updates array on front end.
     const index = this.getElementIndex(object)
-    this.web_players.splice(index,1,object)
+    this.web_players.splice(index,1,{...object})
     const db_id = object._id
-    delete object._id
-    delete object._user_id
-    delete object.web_element_id
-    console.log("Db_id = ",db_id)
-    this.tentHttpService.updateTent(db_id,object)
+    const saveThis = {...object}
+    delete saveThis._id
+    delete saveThis._user_id
+    delete saveThis.web_element_id
+    this.tentHttpService.updateTent(db_id,saveThis)
       .subscribe(
         (reply) => console.log(reply)
       )

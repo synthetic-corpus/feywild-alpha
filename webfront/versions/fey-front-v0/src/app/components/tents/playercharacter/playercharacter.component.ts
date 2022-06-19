@@ -50,6 +50,7 @@ export class PlayercharacterComponent implements OnInit {
     this.player = this.sanitizeString.sanitize(this.playerForm.value.playerFC)
     this.character = this.sanitizeString.sanitize(this.playerForm.value.characterFC)
     this.notes = this.sanitizeString.sanitize(this.playerForm.value.notesFC)
+    console.log(" The aat pc c = ",this._id)
     this.playerChanged.emit({
       _id: this._id,
       _user_id: this._user_id,
