@@ -1,11 +1,18 @@
 
 <form [formGroup]="encounterForm" (ngSubmit)="onSave()">
-  <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input matInput="name" formControlName="encounterFC">
-    <mat-error *ngIf="!encounterForm.get('encounterFC').valid && encounterForm.get('encounterFC').touched">Must have a Name!</mat-error>
-  </mat-form-field>
-  <button mat-flat-button color="secondary" type="submit" [disabled]="web_npcs.length === 0">Save Encounter!</button>
+  <mat-card>
+    <mat-card-subtitle>Adding a new encounter!</mat-card-subtitle>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput="name" formControlName="encounterFC">
+      <mat-error *ngIf="!encounterForm.get('encounterFC').valid && encounterForm.get('encounterFC').touched">Must have a Name!</mat-error>
+    </mat-form-field>
+    <mat-card-actions>
+      <!-- Add a character. Save the Form -->
+      <button mat-button color="primary" [disabled]="web_npcs.length >= 12"><mat-icon>add_circl</mat-icon></button>
+      <button mat-button color="accent" type="submit" [disabled]="web_npcs.length === 0"><mat-icon>done</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
 </form>
   <app-npc
     *ngFor="let npc of web_npcs"
