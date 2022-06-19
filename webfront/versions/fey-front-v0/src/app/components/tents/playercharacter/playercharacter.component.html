@@ -1,49 +1,58 @@
 <mat-card *ngIf="editting === false">
-  <mat-card-title><h3>{{ character }}</h3><span>played by {{ player }}</span></mat-card-title>
-  <mat-card-subtitle>
+  <mat-card-title>{{ character }}</mat-card-title>
+  <mat-card-subtitle>{{ player }}</mat-card-subtitle>
+  <mat-card-content>
     <span>Initiative: {{ initiative }}</span>
     <span *ngIf="ac"> - Armor: {{ ac }}</span>
     <span *ngIf="spell_dc"> - Spell DC: {{ spell_dc }}</span>
     <span *ngIf="passive_perception"> - PP: {{ passive_perception }}</span>
-  </mat-card-subtitle>
+  </mat-card-content>
   <mat-card-content *ngIf="notes">
     {{ notes }}
   </mat-card-content>
-  <!-- Buttons -->
-  <button mat-flat-button color="primary" (click)="toggleEdit()"><mat-icon>pencil</mat-icon></button>
-  <button mat-flat-button color="warn" (click)="onDeleteMe()"><mat-icon>Delete</mat-icon></button>
+  <mat-card-actions>
+    <button mat-button (click)="toggleEdit()"><mat-icon>edit</mat-icon></button>
+    <button mat-button (click)="onDeleteMe()"><mat-icon>delete</mat-icon></button>
+  </mat-card-actions>
 </mat-card>
 
-<div *ngIf="editting === true">
-  <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Character</mat-label>
-      <input matInput="Character" formControlName="characterFC">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Character</mat-label>
-      <input matInput="Player" formControlName="playerFC">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Initiative</mat-label>
-      <input matInput formControlName="initiativeFC" type="number" [(ngModel)]="initiative">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Armor</mat-label>
-      <input matInput formControlName="armorFC" type="number" [(ngModel)]="ac">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Spell DC</mat-label>
-      <input matInput formControlName="spell_dcFC">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Passive Perception</mat-label>
-      <input matInput formControlName="passive_perceptionFC">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Notes</mat-label>
-      <textarea matInput="Notes" formControlName="notesFC"></textarea>
-    </mat-form-field>
-    <button mat-flat-button color="secondary" type="submit">Done!</button>
-  </form>
-</div>
+<mat-card *ngIf="editting === true">
+  <mat-card-subtitle>Editting {{ character }}</mat-card-subtitle>
+  <mat-card-content>
+    <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Character</mat-label>
+        <input matInput="Character" formControlName="characterFC">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Character</mat-label>
+        <input matInput="Player" formControlName="playerFC">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Initiative</mat-label>
+        <input matInput formControlName="initiativeFC" type="number" [(ngModel)]="initiative">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Armor</mat-label>
+        <input matInput formControlName="armorFC" type="number" [(ngModel)]="ac">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Spell DC</mat-label>
+        <input matInput formControlName="spell_dcFC">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Passive Perception</mat-label>
+        <input matInput formControlName="passive_perceptionFC">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Notes</mat-label>
+        <textarea matInput="Notes" formControlName="notesFC"></textarea>
+      </mat-form-field>
+      <button mat-flat-button type="submit">Done!</button>
+    </form>
+    <mat-card-actions>
+
+    </mat-card-actions>
+  </mat-card-content>
+
+</mat-card>
