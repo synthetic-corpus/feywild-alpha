@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -65,6 +66,7 @@ import { NewTentComponent } from './components/tents/newtent/newtent.component';
     MatInputModule,
     MatListModule,
     MatGridListModule,
+    MatSidenavModule,
     AppRouterModule,
     HttpClientModule,
     ReactiveFormsModule,

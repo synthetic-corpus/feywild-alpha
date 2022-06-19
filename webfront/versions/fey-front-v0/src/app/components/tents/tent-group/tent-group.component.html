@@ -1,21 +1,31 @@
-<h2>This is the Tent Group!</h2>
-<app-playercharacter
-  *ngFor = "let tent of web_players"
-  [_id] = "tent._id"
-  [_user_id] = "tent._user_id"
-  [web_element_id]="tent.web_element_id"
-  [player] = "tent.player"
-  [character]="tent.character"
-  [initiative]="tent.initiative"
-  [passive_perception]="tent.passive_perception"
-  [spell_dc] = "tent.spell_dc"
-  [ac] = "tent.ac"
-  [notes] = "tent.notes"
-  (playerChanged) = "onUpdatePlayer($event)"
-  (playerDeleted) = "onDeletePlayer($event)"
-></app-playercharacter>
-<app-newtent
-  *ngIf = "web_players.length < 8"
-  (newPlayer) = "onReload()"
->
-</app-newtent>
+<mat-drawer-container autosize>
+  <button type="button" mat-button (click) = "newChar.toggle()" [disabled]="web_players.length >= 8">Add a Character </button>
+  <mat-drawer #newChar>
+    <app-newtent
+      *ngIf = "web_players.length < 8"
+      (newPlayer) = "onReload()"
+      (newPlayer) = "newChar.toggle()"
+    >
+    </app-newtent>
+    <div *ngIf = "web_players.length >= 8">
+      <p>Max characters have been created</p>
+    </div>
+    <button type="button" color="warn" mat-button (click) = "newChar.toggle()">Close</button>
+  </mat-drawer>
+  <app-playercharacter
+    *ngFor = "let tent of web_players"
+    [_id] = "tent._id"
+    [_user_id] = "tent._user_id"
+    [web_element_id]="tent.web_element_id"
+    [player] = "tent.player"
+    [character]="tent.character"
+    [initiative]="tent.initiative"
+    [passive_perception]="tent.passive_perception"
+    [spell_dc] = "tent.spell_dc"
+    [ac] = "tent.ac"
+    [notes] = "tent.notes"
+    (playerChanged) = "onUpdatePlayer($event)"
+    (playerDeleted) = "onDeletePlayer($event)"
+  ></app-playercharacter>
+</mat-drawer-container>
+
