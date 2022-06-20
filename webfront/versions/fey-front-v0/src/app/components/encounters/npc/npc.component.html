@@ -13,11 +13,10 @@
     <button mat-button color="primary" [disabled] = "maxed_out" (click)="onDuplicateMe()"><mat-icon>file_copy</mat-icon></button>
     <button mat-button color="warn" (click)="onDeleteMe()"><mat-icon>delete</mat-icon></button>
   </mat-card-actions>
-
 </mat-card>
 
-<div *ngIf="editting === true">
-  <form [formGroup]="npcForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="npcForm" (ngSubmit)="onSubmit()" *ngIf="editting === true">
+  <mat-card>
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
       <input matInput="name" formControlName="nameFC">
@@ -34,7 +33,9 @@
       <mat-label>Notes</mat-label>
       <textarea matInput formControlName="notesFC"></textarea>
     </mat-form-field>
-    <button mat-flat-button color="secondary" type="submit">Done!</button>
-  </form>
-</div>
+    <mat-card-actions>
+      <button mat-flat-button color="secondary" type="submit">Done!</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
 

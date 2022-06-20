@@ -1,30 +1,31 @@
- <div *ngIf = "!maxed_out">
-  <!-- Only show either Button or if not maxed out already-->
-  <div>
-    <form [formGroup]="npcForm" (ngSubmit)="onAddNpc()">
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
+
+<form [formGroup]="npcForm" (ngSubmit)="onAddNpc()" *ngIf ="!maxed_out">
+  <mat-card>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
         <input matInput="name" formControlName="nameFC">
         <mat-error *ngIf="!npcForm.get('nameFC').valid && npcForm.get('nameFC').touched">Must have Letters!</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Initiative</mat-label>
-        <input matInput formControlName="initiativeFC" type="number" [(ngModel)]="initiative">
-        <mat-error *ngIf="!npcForm.get('initiativeFC').valid && npcForm.get('initiativeFC').touched">Must have initiatvie!</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Armor</mat-label>
-        <input matInput formControlName="armorFC" type="number" [(ngModel)]="armor">
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Notes</mat-label>
-        <textarea matInput formControlName="notesFC"></textarea>
-        <mat-error *ngIf="!npcForm.get('notesFC').valid && npcForm.get('notesFC').touched">Must have Letters!</mat-error>
-      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Initiative</mat-label>
+      <input matInput formControlName="initiativeFC" type="number" [(ngModel)]="initiative">
+      <mat-error *ngIf="!npcForm.get('initiativeFC').valid && npcForm.get('initiativeFC').touched">Must have initiatvie!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Armor</mat-label>
+      <input matInput formControlName="armorFC" type="number" [(ngModel)]="armor">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="notesFC"></textarea>
+      <mat-error *ngIf="!npcForm.get('notesFC').valid && npcForm.get('notesFC').touched">Must have Letters!</mat-error>
+    </mat-form-field>
+    <mat-card-actions>
       <button mat-flat-button color="secondary" [disabled]="!npcForm.valid" type="submit">Done!</button>
-    </form>
-  </div>
-</div>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
 <div *ngIf = "maxed_out">
   <!-- If maxed out....-->
   <p>
