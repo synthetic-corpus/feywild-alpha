@@ -46,12 +46,13 @@ export class NewencounterComponent implements OnInit, OnDestroy {
     //console.log(object)
     const index = this.getElementIndex(object)
     this.web_npcs.splice(index,1,object)
+
   }
 
   onDuplicateNpc(web_element_id){
     //console.log(e)
     const index = this.web_npcs.findIndex(element => element.web_element_id === web_element_id)
-    const pushThis = this.web_npcs[index]
+    const pushThis = {...this.web_npcs[index]}
     pushThis.web_element_id = this.webId.generate()
     this.web_npcs.splice(index,0,pushThis)
   }

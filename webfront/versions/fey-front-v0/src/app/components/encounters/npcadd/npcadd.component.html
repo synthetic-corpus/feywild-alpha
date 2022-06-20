@@ -1,6 +1,6 @@
  <div *ngIf = "!maxed_out">
   <!-- Only show either Button or if not maxed out already-->
-  <div *ngIf="adding === true">
+  <div>
     <form [formGroup]="npcForm" (ngSubmit)="onAddNpc()">
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
@@ -23,9 +23,6 @@
       </mat-form-field>
       <button mat-flat-button color="secondary" [disabled]="!npcForm.valid" type="submit">Done!</button>
     </form>
-  </div>
-  <div *ngIf = "!adding">
-    <button mat-flat-button color="primary" (click)="toggleAdding()">Add NPC!</button>
   </div>
 </div>
 <div *ngIf = "maxed_out">

@@ -66,15 +66,17 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
     //console.log(object)
     const index = this.getElementIndex(object)
     this.web_npcs.splice(index,1,object)
+    console.log("After Update: ",this.web_npcs)
     this.autoSave()
   }
 
   onDuplicateNpc(web_element_id){
     //console.log(e)
     const index = this.web_npcs.findIndex(element => element.web_element_id === web_element_id)
-    const pushThis = this.web_npcs[index]
+    const pushThis = {...this.web_npcs[index]}
     pushThis.web_element_id = this.webId.generate()
     this.web_npcs.splice(index,0,pushThis)
+    console.log("After Duplication: ",this.web_npcs)
     this.autoSave()
   }
 

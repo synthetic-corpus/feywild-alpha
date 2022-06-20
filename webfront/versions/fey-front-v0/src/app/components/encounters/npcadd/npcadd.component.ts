@@ -12,8 +12,6 @@ export class NpcaddComponent implements OnInit, OnDestroy {
   @Output() newNpc = new EventEmitter<{web_element_id: string, name: string, initiative: number, armor?: number, notes?: string}>()
   @Input() maxed_out!: boolean
 
-  adding: boolean = false;
-
   web_element_id: string = this.webId.generate()
   name: string
   initiative: number
@@ -42,10 +40,6 @@ export class NpcaddComponent implements OnInit, OnDestroy {
     })
   }
 
-  toggleAdding(){
-    this.adding ? this.adding = false : this.adding = true
-  }
-
   onAddNpc(){
     this.name = this.sanitizeString.sanitize(this.npcForm.value.nameFC)
     this.notes = this.sanitizeString.sanitize(this.npcForm.value.notesFC)
@@ -57,7 +51,6 @@ export class NpcaddComponent implements OnInit, OnDestroy {
       armor: this.armor,
       notes: this.notes
     })
-    this.toggleAdding()
     this.npcForm.reset()
   }
 
