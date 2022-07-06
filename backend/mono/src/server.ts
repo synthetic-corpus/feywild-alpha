@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 const cors = require('cors');
 import { config } from './config';
 import { Request, Response } from 'express';
@@ -33,6 +34,12 @@ app.use('/v0/tent',TentRouterV0)
 
 app.get('/health', async (req: Request, res: Response) => {
     res.status(200).send('Root of API is up');
+})
+
+/* Static Paths for Angular */
+app.use('/',express.static(path.join(__dirname,'angular')))
+app.use((req,res,next)=>{
+    res.sendFile(path.join(__dirname,'angular'));
 })
 app.listen(port, () => {
     console.log(`Server is Running on port ${port}`)
