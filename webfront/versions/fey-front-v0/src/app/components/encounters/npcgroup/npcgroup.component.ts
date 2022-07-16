@@ -31,9 +31,11 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
     this.encountersHttp.retrieveEncounter(this.db_id)
         .subscribe(
           (reply: HttpReplyMessage) =>{
-            this.web_npcs = reply.data.npcs as {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[]
+            const ready_these = reply.data.npcs as {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[]
+            console.log("Before mutataion ",ready_these)
+            this.web_npcs = this.readyNpcs(ready_these);
             this.encounter_name = reply.data.name
-            console.log()
+            console.log(this.web_npcs)
           }
         )
   }
@@ -48,6 +50,7 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
         }
       }
     )
+    console.log("with unique ids ",mutated)
     return mutated
   }
 
@@ -65,7 +68,7 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   onUpdateNpc(object){
     //console.log(object)
     const index = this.getElementIndex(object)
-    this.web_npcs.splice(index,1,object)
+    this.web_npcs.splice(index,1,{...object})
     console.log("After Update: ",this.web_npcs)
     this.autoSave()
   }
@@ -89,7 +92,7 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
 
   autoSave(){
     // Everytime a change is made it will auto-save.
-    const npcs = this.web_npcs.map((element)=> {delete element.web_element_id; return element})
+    const npcs = this.web_npcs.map((element)=> {let copy = {...element}; delete copy.web_element_id; return copy})
     this.encountersHttp.updateEncounter(this.db_id,{npcs})
       .subscribe(
         (res: HttpReplyMessage)=>{
@@ -103,4 +106,5 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
         (element) => this.webId.remove(element.web_element_id)
       )
   }
+
 }

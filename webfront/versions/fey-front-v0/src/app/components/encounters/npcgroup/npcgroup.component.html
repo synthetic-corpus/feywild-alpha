@@ -1,19 +1,29 @@
-<mat-card><h2>{{ encounter_name }}</h2></mat-card>
-<app-npc
-  *ngFor="let npc of web_npcs"
-  (npcChanged)="onUpdateNpc($event)"
-  (npcDuplicated)="onDuplicateNpc($event)"
-  (npcDeleted)="onDeleteNpc($event)"
-  [maxed_out]="web_npcs.length >= 12"
-  [id]="npc.web_element_id"
-  [web_element_id]="npc.web_element_id"
-  [name]="npc.name"
-  [initiative]="npc.initiative"
-  [armor]="npc.ac"
-  [notes]="npc.notes"
->
-</app-npc>
-<app-npcadd
-  [maxed_out]="web_npcs.length >= 12"
-  (newNpc)="onCreateNpc($event)"
-></app-npcadd>
+
+<mat-drawer-container class="longContainer">
+  <mat-drawer #newMonster>
+    <app-npcadd
+      [maxed_out]="web_npcs.length >= 12"
+      (newNpc)="onCreateNpc($event)"
+      (newNpc)="newMonster.toggle()"
+    ></app-npcadd>
+  </mat-drawer>
+  <mat-card>
+    <mat-card-title>{{ encounter_name }}</mat-card-title>
+    <app-npc
+      *ngFor="let npc of web_npcs"
+      (npcChanged)="onUpdateNpc($event)"
+      (npcDuplicated)="onDuplicateNpc($event)"
+      (npcDeleted)="onDeleteNpc($event)"
+      [maxed_out]="web_npcs.length >= 12"
+      [id]="npc.web_element_id"
+      [web_element_id]="npc.web_element_id"
+      [name]="npc.name"
+      [initiative]="npc.initiative"
+      [armor]="npc.ac"
+      [notes]="npc.notes"
+      >
+    </app-npc>
+    <button mat-button type="button" color="primary" [disabled]="web_npcs.length >= 12" class="longButton" (click)="newMonster.toggle()"><mat-icon>add_circle</mat-icon></button>
+  </mat-card>
+</mat-drawer-container>
+
