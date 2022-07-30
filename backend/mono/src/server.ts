@@ -25,8 +25,8 @@ app.use(express.json())
 
 /* Make way for the Routers */
 app.use(cors())
-app.use('/v0/feywild', FeywildRouterV0)
-app.use('/v0/harptos', HarptosRouterV0)
+// app.use('/v0/feywild', FeywildRouterV0)
+// app.use('/v0/harptos', HarptosRouterV0)
 app.use('/v0/campaign', CampaignRouterV0)
 app.use('/v0/user',UserRouterV0)
 app.use('/v0/encounter',EncounterRouterV0)
