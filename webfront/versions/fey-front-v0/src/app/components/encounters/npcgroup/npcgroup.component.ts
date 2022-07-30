@@ -50,7 +50,6 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
         }
       }
     )
-    console.log("with unique ids ",mutated)
     return mutated
   }
 
@@ -61,12 +60,12 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   }
 
   onCreateNpc(newNpc){
+    newNpc.web_element_id = this.webId.generate()
     this.web_npcs.push(newNpc)
     this.autoSave()
   }
 
   onUpdateNpc(object){
-    //console.log(object)
     const index = this.getElementIndex(object)
     this.web_npcs.splice(index,1,{...object})
     console.log("After Update: ",this.web_npcs)
@@ -74,7 +73,6 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   }
 
   onDuplicateNpc(web_element_id){
-    //console.log(e)
     const index = this.web_npcs.findIndex(element => element.web_element_id === web_element_id)
     const pushThis = {...this.web_npcs[index]}
     pushThis.web_element_id = this.webId.generate()

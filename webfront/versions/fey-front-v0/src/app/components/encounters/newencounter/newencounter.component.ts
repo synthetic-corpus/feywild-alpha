@@ -39,14 +39,15 @@ export class NewencounterComponent implements OnInit, OnDestroy {
   }
 
   onCreateNpc(newNpc){
+    newNpc.web_element_id = this.webId.generate()
+    console.log(newNpc)
     this.web_npcs.push(newNpc)
   }
 
   onUpdateNpc(object){
     //console.log(object)
     const index = this.getElementIndex(object)
-    this.web_npcs.splice(index,1,object)
-
+    this.web_npcs.splice(index,1,{...object})
   }
 
   onDuplicateNpc(web_element_id){
@@ -64,7 +65,7 @@ export class NewencounterComponent implements OnInit, OnDestroy {
   }
 
   onSave(){
-    const npcs = this.web_npcs.map((element)=> {delete element.web_element_id; return element})
+    const npcs = this.web_npcs.map((element)=> {let copy = {...element}; delete copy.web_element_id; return copy})
     const name = this.sanitizeString.sanitize(this.encounterForm.value.encounterFC)
     const _campaign_id = this.campaign.getActiveCampaignId()
     const saveThis = {
@@ -84,7 +85,7 @@ export class NewencounterComponent implements OnInit, OnDestroy {
           console.log(res.body)
         }
       )
-    this.router.navigate(['/encounters'])
+      this.router.navigate(['/encounters'])
   }
 
   ngOnDestroy(): void {

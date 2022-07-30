@@ -8,7 +8,7 @@
     ></app-npcadd>
     <button type="button" color="warn" mat-button (click) = "newMonster.toggle()">Close</button>
   </mat-drawer>
-  <form [formGroup]="encounterForm" (ngSubmit)="onSave()">
+  <form [formGroup]="encounterForm">
     <mat-card>
       <mat-card-subtitle>Adding a new encounter!</mat-card-subtitle>
       <mat-form-field appearance="fill">
@@ -19,23 +19,24 @@
       <mat-card-actions>
         <!-- Add a character. Save the Form -->
 
-        <button mat-flat-button color="accent" type="submit" [disabled]="web_npcs.length === 0"><mat-icon>done</mat-icon></button>
+        <button mat-flat-button color="accent" type="submit" [disabled]="web_npcs.length === 0" (click)="onSave()"><mat-icon>done</mat-icon></button>
       </mat-card-actions>
+      <app-npc
+        *ngFor="let npc of web_npcs"
+        (npcChanged)="onUpdateNpc($event)"
+        (npcDuplicated)="onDuplicateNpc($event)"
+        (npcDeleted)="onDeleteNpc($event)"
+        [maxed_out]="web_npcs.length >= 12"
+        [id]="npc.web_element_id"
+        [web_element_id]="npc.web_element_id"
+        [name]="npc.name"
+        [initiative]="npc.initiative"
+        [armor]="npc.ac"
+        [notes]="npc.notes"
+        >
+      </app-npc>
     </mat-card>
   </form>
   <button mat-button type="button" color="primary" [disabled]="web_npcs.length >= 12" class="longButton" (click)="newMonster.toggle()"><mat-icon>add_circle</mat-icon></button>
-  <app-npc
-    *ngFor="let npc of web_npcs"
-    (npcChanged)="onUpdateNpc($event)"
-    (npcDuplicated)="onDuplicateNpc($event)"
-    (npcDeleted)="onDeleteNpc($event)"
-    [maxed_out]="web_npcs.length >= 12"
-    [id]="npc.web_element_id"
-    [web_element_id]="npc.web_element_id"
-    [name]="npc.name"
-    [initiative]="npc.initiative"
-    [armor]="npc.ac"
-    [notes]="npc.notes"
-    >
-  </app-npc>
+
 </mat-drawer-container>
