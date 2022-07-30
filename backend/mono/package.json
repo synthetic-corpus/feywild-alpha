@@ -10,7 +10,8 @@
     "clean": "rm -rf www/ || true",
     "prod": "tsc && node ./www/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preppage": "cp -R ./angular ./www/angular"
+    "preppage": "cp -R ./angular ./www/angular",
+    "readyProd": "npm run clean && tsc && npm run preppage"
   },
   "author": "",
   "license": "ISC",

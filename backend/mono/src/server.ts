@@ -38,6 +38,9 @@ app.get('/health', async (req: Request, res: Response) => {
 
 /* Static Paths for Angular */
 app.use('/',express.static(path.join(__dirname,'angular')))
+app.use('/home',express.static(path.join(__dirname,'angular')))
+app.use('/encounters',express.static(path.join(__dirname,'angular')))
+app.use('/tents',express.static(path.join(__dirname,'angular')))
 app.use((req,res,next)=>{
     res.sendFile(path.join(__dirname,'angular'));
 })
