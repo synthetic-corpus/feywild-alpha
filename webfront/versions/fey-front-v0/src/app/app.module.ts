@@ -34,9 +34,12 @@ import { NpcaddComponent } from './components/encounters/npcadd/npcadd.component
 import { NewencounterComponent } from './components/encounters/newencounter/newencounter.component';
 import { TentGroupComponent } from './components/tents/tent-group/tent-group.component';
 import { NewTentComponent } from './components/tents/newtent/newtent.component';
+import { HelpComponent } from './components/help/help.component';
+import { SupportComponent } from './components/support/support.component';
 
 @NgModule({
   declarations: [
+    HelpComponent,
     AppComponent,
     NavBarComponent,
     StartPageComponent,
@@ -51,7 +54,8 @@ import { NewTentComponent } from './components/tents/newtent/newtent.component';
     NpcaddComponent,
     NewencounterComponent,
     TentGroupComponent,
-    NewTentComponent
+    NewTentComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,

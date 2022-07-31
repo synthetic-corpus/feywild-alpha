@@ -6,6 +6,8 @@ import { TentGroupComponent } from './components/tents/tent-group/tent-group.com
 import { NpcgroupComponent } from './components/encounters/npcgroup/npcgroup.component';
 import { NewencounterComponent } from './components/encounters/newencounter/newencounter.component';
 import { InitiativeListComponent } from './components/run-encounters/initiative-list/initiative-list.component';
+import { HelpComponent } from './components/help/help.component';
+import { SupportComponent } from './components/support/support.component';
 
 const appRoutes: Routes = [
 
@@ -18,6 +20,8 @@ const appRoutes: Routes = [
   { path: 'new', children: [
     {path: 'encounter', component: NewencounterComponent, pathMatch: 'full'}
   ]},
+  { path: 'help', component: HelpComponent},
+  { path: 'support', component: SupportComponent},
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ]
 
