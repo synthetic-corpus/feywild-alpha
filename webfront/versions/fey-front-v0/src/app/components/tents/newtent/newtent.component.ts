@@ -12,6 +12,7 @@ import { SanitizeStringsService } from 'src/app/services/sanitize-strings.servic
 export class NewTentComponent implements OnInit {
 
   @Output() newPlayer = new EventEmitter<NewTent>()
+  @Output() cancelPlayer = new EventEmitter<string>()
 
   constructor(
     private tentHttpservice: TentHttpService,
@@ -62,6 +63,10 @@ export class NewTentComponent implements OnInit {
         this.sanitize.mustHaveLetters()
       ])
     })
+  }
+
+  onCancelPlayer(){
+    this.cancelPlayer.emit("Player Creation Cancelled")
   }
 
   onSave(){

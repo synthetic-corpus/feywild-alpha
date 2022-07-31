@@ -11,8 +11,8 @@
     {{ notes }}
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="toggleEdit()"><mat-icon>edit</mat-icon></button>
-    <button mat-button (click)="onDeleteMe()"><mat-icon>delete</mat-icon></button>
+    <button mat-button color = "primary" (click)="toggleEdit()"><mat-icon>edit</mat-icon></button>
+    <button mat-button color = "warn" (click)="onDeleteMe()"><mat-icon>delete</mat-icon></button>
   </mat-card-actions>
 </mat-card>
 <form *ngIf="editting === true" [formGroup]="playerForm" (ngSubmit)="onSubmit()">
@@ -48,8 +48,10 @@
           <textarea matInput="Notes" formControlName="notesFC"></textarea>
         </mat-form-field>
       <mat-card-actions>
-        <button mat-button type="submit" [disabled]="!playerForm.valid">Done!</button>
+        <button mat-flat-button type="submit" color="primary" [disabled]="!playerForm.valid"><mat-icon>done</mat-icon><span> Done!</span></button>
+        <button type="button" color="warn" mat-flat-button (click) = "toggleEdit()"><mat-icon>cancel</mat-icon><span> cancel</span></button>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>
 </form>
+<br>

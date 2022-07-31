@@ -21,7 +21,8 @@
       <mat-error *ngIf="!npcForm.get('notesFC').valid && npcForm.get('notesFC').touched">Must have Letters!</mat-error>
     </mat-form-field>
     <mat-card-actions>
-      <button mat-flat-button color="secondary" [disabled]="!npcForm.valid" type="submit">Done!</button>
+      <button mat-flat-button color="primary" [disabled]="!npcForm.valid" type="submit"><mat-icon>done</mat-icon><span> Done!</span></button>
+      <button type="button" color="warn" mat-flat-button (click) = "onCancelNpc()"><mat-icon>cancel</mat-icon><span> cancel</span></button>
     </mat-card-actions>
   </mat-card>
 </form>
@@ -32,3 +33,4 @@
     Only a max of Twelve NPCs per encounter. Delete one to add more.
   </p>
 </div>
+<br>

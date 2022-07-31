@@ -10,6 +10,8 @@ import { SanitizeStringsService } from 'src/app/services/sanitize-strings.servic
 })
 export class NpcaddComponent implements OnInit, OnDestroy {
   @Output() newNpc = new EventEmitter<{web_element_id: string, name: string, initiative: number, armor?: number, notes?: string}>()
+  @Output() cancelNpc = new EventEmitter<string>()
+
   @Input() maxed_out!: boolean
 
   web_element_id: string = this.webId.generate()
@@ -52,6 +54,10 @@ export class NpcaddComponent implements OnInit, OnDestroy {
       notes: this.notes
     })
     this.npcForm.reset()
+  }
+
+  onCancelNpc(){
+    this.cancelNpc.emit("canceled npc creation")
   }
 
   ngOnDestroy(): void {

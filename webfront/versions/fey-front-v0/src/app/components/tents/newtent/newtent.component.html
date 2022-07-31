@@ -38,6 +38,9 @@
       <mat-hint *ngIf="newPlayerCharacter.get('notesFC').touched">This Field is optional.</mat-hint>
       <mat-error *ngIf="!newPlayerCharacter.get('notesFC').valid">Must have Letters!</mat-error>
     </mat-form-field>
-    <button mat-flat-button color="secondary" [disabled]="!newPlayerCharacter.valid" type="submit">Done!</button>
+    <mat-card-actions>
+      <button type="button" mat-flat-button color="primary" [disabled]="!newPlayerCharacter.valid" type="submit"><mat-icon>done</mat-icon> Save</button>
+    <button type="button" color="warn" mat-flat-button (click) = "onCancelPlayer()"><mat-icon>cancel</mat-icon><span> cancel</span></button>
+    </mat-card-actions>
   </form>
 </div>
