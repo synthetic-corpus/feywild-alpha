@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { faDungeon} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
 import { AccountHttpService } from 'src/app/services/http/account-http.service';
@@ -12,8 +12,7 @@ import { CampaignService } from 'src/app/services/campaign.service';
 })
 export class NavBarComponent implements OnInit {
   isCollapsed = true;
-  faUser = faUser;
-  faPowerOff = faPowerOff;
+  npcs = faDungeon;
   userName: string = '';
   userReady: Boolean = false
   myCampaign: string;
