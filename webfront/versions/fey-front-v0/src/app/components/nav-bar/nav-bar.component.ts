@@ -38,9 +38,13 @@ export class NavBarComponent implements OnInit {
     );
     this.userService.retrieveSelf()
       .subscribe(
-        (res) => {
-          console.log(res)
+        (res: Response) => {
+          console.log("User exists in Database")
           this.userReady = true
+        },
+        (error: Error)=>{
+          console.log("Adding user to Database")
+          this.addSelf()
         }
       )
       console.log(this.userReady)

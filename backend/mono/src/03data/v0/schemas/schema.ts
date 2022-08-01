@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const userSchema = new mongoose.Schema({
-    _authID: { type: String, required: true},
+    _authID: { type: String, required: true, unique: true},
     name: { type: String, default: 'player'},
     tier: {type: Number, default: 0}
 })
