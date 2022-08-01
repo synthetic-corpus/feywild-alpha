@@ -17,7 +17,7 @@ router.post('/', async (req: Request, res: Response) => {
 })
 
 router.get('/:id', async (req: Request, res: Response) => {
-    const user_id: string = req.params.user_id
+    const user_id: string = req.user_id
     const feywild_id: string = req.params.id
     const reply: HttpReplyMessage = await FeywildLogic.getFeywild(user_id,feywild_id)
     return res.status(reply.code).send(reply)

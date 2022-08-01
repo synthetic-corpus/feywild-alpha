@@ -41,7 +41,7 @@ router.patch('/:id', requireAuth, async (req: Request, res: Response) => {
 
 router.delete('/:id', requireAuth,async (req: Request, res: Response) => {
     const id = req.params.id
-    const user_id = req.params.user_id
+    const user_id = req.user_id
     const reply = await TentLogic.deleteTent(user_id,id)
     return res.status(reply.code).send(reply)
 })
