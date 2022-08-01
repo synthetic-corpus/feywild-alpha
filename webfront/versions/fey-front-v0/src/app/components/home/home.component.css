@@ -6,3 +6,7 @@ mat-grid-tile {
 mat-grid-tile:active {
   background: wheat
 }
+
+.display-tile {
+  text-align: center;
+}
