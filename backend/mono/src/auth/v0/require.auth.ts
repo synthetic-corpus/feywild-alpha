@@ -28,6 +28,7 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
             console.error(`Could not get user ID from Request  ${req._read}`) 
             return res.status(500).send("Problem with user identification.!")
         }
+        //console.log("Auth Layer: appending user id ",user_id," to the request")
         req.user_id = user_id
         return next()
     } catch(e){

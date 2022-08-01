@@ -12,7 +12,7 @@ router.get('/health', async (req: Request, res: Response) => {
 })
 
 router.post('/', requireAuth, async (req: Request, res: Response) => {
-    const user_id = req.params.user_id
+    const user_id = req.user_id
     const newTent: Tent = req.body
     const reply: HttpReplyMessage = await TentLogic.createTent(user_id,newTent)
     return res.status(reply.code).send(reply)

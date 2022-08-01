@@ -15,15 +15,17 @@ export function getUserId(req: Request): string | undefined {
 }
 
 export function parseUserId(jwtToken: string): string {
+    //console.log("parsing user id with...",jwtToken)
     const decodedJwt = decode(jwtToken) as JwtPayload
+    console.log("paresed user id payload as....",decodedJwt.sub)
     return decodedJwt.sub
   }
 
 export async function verifyToken(authHeader: string): Promise<JwtPayload> {
     const token = getToken(authHeader)
-    console.log("The token I got was.... ",token)
+    //console.log("The token I got was.... ",token)
     const jwt: Jwt = decode(token, { complete: true }) as Jwt
-    console.log("I tried to decode and got ",jwt)
+    //console.log("I tried to decode and got ",jwt)
     const rawCert: string = await matchToKey(jwt.header.kid)
     const cert = stringToPEM(rawCert)
     return verify(token, cert, { algorithms: ['RS256']}) as JwtPayload

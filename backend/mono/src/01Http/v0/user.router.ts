@@ -15,6 +15,8 @@ router.get('/health', async (req: Request, res: Response) => {
 router.post('/', requireAuth, async (req: Request, res: Response) => {
     const id = getUserId(req) || ''
     const userHttp: UserHttp = req.body
+    console.log("User Name: ", userHttp.name)
+    console.log("user id: ",id)
     if(!id){
         console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
         return res.status(500).send("Problem with user identification.!")
@@ -28,6 +30,7 @@ router.post('/', requireAuth, async (req: Request, res: Response) => {
 
 router.get('/self', requireAuth, async (req: Request, res: Response) => {
     const id = getUserId(req) || ''
+    console.log("user id: ",id)
     if(!id){
         console.error(`Could not get user ID from Request  ${stringify(req.headers)}`) 
         return res.status(500).send("Problem with user identification.!")
@@ -35,6 +38,7 @@ router.get('/self', requireAuth, async (req: Request, res: Response) => {
     UserLogic.getUser(id)
         .then((reply: HttpReplyMessage)=>{
             const status: number = reply.code || 500
+            
             return res.status(status).send(reply)
         })
 })

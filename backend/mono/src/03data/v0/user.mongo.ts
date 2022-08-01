@@ -20,7 +20,7 @@ export async function createUser(userId: String, name:string): Promise<HttpReply
 export async function retrieveUser(userId: String): Promise<HttpReplyMessage>{
     let reply: HttpReplyMessage
     try{
-        const user = await UserModel.findOne({userId: userId}).exec()
+        const user = await UserModel.findById(userId).exec()
         if(user){
             reply = {code: 200,message: "Found the user!",data: user}
         }else{

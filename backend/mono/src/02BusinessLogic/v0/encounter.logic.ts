@@ -16,7 +16,7 @@ export async function createEncounter(userId: String, encounterPost: Encounter.E
 
 export async function getEncounter(userId: string, encounterId: string): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(userId)
-    console.log("Converted Id = ",db_uuid)
+    //console.log("Converted Id = ",db_uuid)
     const reply: HttpReplyMessage = await DB.retrieveEncounter(db_uuid, encounterId)
     return reply
 }
@@ -24,7 +24,7 @@ export async function getEncounter(userId: string, encounterId: string): Promise
 export async function getAllEncounters(search: {_user_id: string, _campaign_id?: string}): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(search._user_id)
     search._user_id = db_uuid
-    console.log("Converted Id = ",db_uuid)
+    //console.log("Converted Id = ",db_uuid)
     const reply: HttpReplyMessage = await DB.searchEncounters(search)
     return reply
 }

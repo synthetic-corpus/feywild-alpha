@@ -12,6 +12,8 @@ export async function createUser(userId: String, name: string): Promise<HttpRepl
 export async function getUser(userId: String): Promise<HttpReplyMessage>{
     const db_uuid = await convertUserId(userId)
     const reply: HttpReplyMessage = await DB.retrieveUser(db_uuid)
+    console.log("logic layer searches with: ",userId, "which converted to ",db_uuid)
+    console.log("logic layer finds: ",reply)
     return reply
 }
 
