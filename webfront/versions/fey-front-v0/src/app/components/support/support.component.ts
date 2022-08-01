@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPiggyBank} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-support',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./support.component.css']
 })
 export class SupportComponent implements OnInit {
-
+  piggy = faPiggyBank
   constructor() { }
 
   ngOnInit(): void {
