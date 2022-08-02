@@ -6,6 +6,7 @@
     [roll]="tumble.init"
     [last_roll_method]="tumble.default_roll"
 
+    (rollAgain)="onReRoll($event)"
     (deleteTumbler)="onDeleteElement($event)"
   ></app-tumbler>
 </mat-list>

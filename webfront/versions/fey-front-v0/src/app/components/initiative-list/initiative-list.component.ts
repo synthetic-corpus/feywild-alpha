@@ -76,6 +76,12 @@ export class InitiativeListComponent implements OnInit, OnDestroy {
     this.init_list.splice(location,1)
   }
 
+  onReRoll(event){
+    const location = this.init_list.findIndex((element)=>{return element.web_element_id === event.web_element_id})
+    this.init_list[location].rollInit(event.method)
+    this.init_list.sort((a,b) => {return b.init - a.init})
+  }
+
   /*
   onSubmitQuickie(){
     const name = this.sanitizeString.sanitize(this.addQuickie.value.nameFC)
