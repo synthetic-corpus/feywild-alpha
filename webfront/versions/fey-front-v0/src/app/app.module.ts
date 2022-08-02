@@ -25,8 +25,7 @@ import { StartPageComponent } from './components/start-page/start-page.component
 import { HomeComponent } from './components/home/home.component';
 import { TentsComponent } from './components/tents/tents.component';
 import { EncountersComponent } from './components/encounters/encounters.component';
-import { RunEncountersComponent } from './components/run-encounters/run-encounters.component';
-import { InitiativeListComponent } from './components/run-encounters/initiative-list/initiative-list.component';
+import { InitiativeListComponent } from './components/initiative-list/initiative-list.component';
 import { NpcgroupComponent } from './components/encounters/npcgroup/npcgroup.component';
 import { PlayercharacterComponent } from './components/tents/playercharacter/playercharacter.component';
 import { NpcComponent } from './components/encounters/npc/npc.component';
@@ -46,7 +45,6 @@ import { SupportComponent } from './components/support/support.component';
     HomeComponent,
     TentsComponent,
     EncountersComponent,
-    RunEncountersComponent,
     InitiativeListComponent,
     NpcgroupComponent,
     PlayercharacterComponent,
