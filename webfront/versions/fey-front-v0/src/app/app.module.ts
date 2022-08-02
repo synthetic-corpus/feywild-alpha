@@ -35,6 +35,7 @@ import { TentGroupComponent } from './components/tents/tent-group/tent-group.com
 import { NewTentComponent } from './components/tents/newtent/newtent.component';
 import { HelpComponent } from './components/help/help.component';
 import { SupportComponent } from './components/support/support.component';
+import { TumblerComponent } from './components/initiative-list/tumbler/tumbler.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { SupportComponent } from './components/support/support.component';
     NewencounterComponent,
     TentGroupComponent,
     NewTentComponent,
-    SupportComponent
+    SupportComponent,
+    TumblerComponent
   ],
   imports: [
     BrowserModule,

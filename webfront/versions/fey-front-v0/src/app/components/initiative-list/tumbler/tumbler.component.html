@@ -1,0 +1,6 @@
+<mat-list-item>
+  <span matline [ngClass]="active ? 'inactive' : ''" (click)="onToggleActive()">{{ name}} - {{ roll }}</span>
+  <button mat-icon-button color="warn" (click)="onDeleteTumbler()">
+    <mat-icon matListIcon>delete</mat-icon>
+  </button>
+</mat-list-item>
