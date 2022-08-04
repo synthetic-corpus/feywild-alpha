@@ -15,7 +15,15 @@ const tentSchema = new mongoose.Schema({
     spell_dc: {type: Number},
     passive_perception: {type: Number},
     ac: {type: Number, required: true},
-    notes: {type: String}
+    notes: {type: String},
+    roll_method: {
+        type: String,
+        default: 'normal',
+        enum: {
+            values: ['normal','advantage','disadvantage'],
+            message: '{VALUE} is not a valid default_roll'
+        }
+    }
 })
 
 const campaignSchema = new mongoose.Schema({

@@ -5,7 +5,15 @@ const encounterNPC = new mongoose.Schema({
     name: {type: String, required: true},
     initiative: {type: Number, required: true},
     ac: {type: Number},
-    notes: {type: String}
+    notes: {type: String},
+    roll_method: {
+        type: String,
+        default: 'normal',
+        enum: {
+            values: ['normal','advantage','disadvantage'],
+            message: '{VALUE} is not a valid default_roll'
+        }
+    }
 },{_id: false})
 
 const encounterSchema = new mongoose.Schema({

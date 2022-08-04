@@ -3,6 +3,7 @@ interface Npcs {
     initiative: number,
     ac?: number,
     notes?: string
+    roll_method?: string
 }
 
 export interface EncounterHttp {

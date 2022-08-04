@@ -7,7 +7,8 @@ export interface Tent {
     spell_dc?: number,
     passive_perception: number,
     ac: number,
-    notes?: string
+    notes?: string,
+    roll_method?: string
 }
 
 export interface TentPatch {
