@@ -10,7 +10,7 @@ import { faDiceD20 } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./npcadd.component.css']
 })
 export class NpcaddComponent implements OnInit, OnDestroy {
-  @Output() newNpc = new EventEmitter<{web_element_id: string, name: string, initiative: number, armor?: number, notes?: string}>()
+  @Output() newNpc = new EventEmitter<{web_element_id: string, name: string, initiative: number, armor?: number, roll_method?: string, notes?: string}>()
   @Output() cancelNpc = new EventEmitter<string>()
 
   @Input() maxed_out!: boolean
@@ -39,6 +39,7 @@ export class NpcaddComponent implements OnInit, OnDestroy {
       ]),
       'initiativeFC': new FormControl(this.initiative,[Validators.required]),
       'armorFC': new FormControl(this.armor),
+      'rollFC': new FormControl(this.roll_method),
       'notesFC': new FormControl(this.notes,[
         this.sanitizeString.mustHaveLetters()
       ])
@@ -54,6 +55,7 @@ export class NpcaddComponent implements OnInit, OnDestroy {
       name: this.name,
       initiative: this.initiative,
       armor: this.armor,
+      roll_method: this.roll_method,
       notes: this.notes
     })
     this.npcForm.reset()

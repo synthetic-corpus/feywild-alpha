@@ -53,6 +53,30 @@
   </p>
 </mat-card>
 <mat-card>
+  <mat-card-title>Advantage and Disadvantage rolls</mat-card-title>
+  <p>All players and NPC start with their inititive as  normal. Anywhere you see
+     the dice icon you can set a roll to default as advantage or disadvantage.
+     Colors of dice are color coded.
+  </p>
+  <ul>
+    <li>
+      <mat-icon><fa-icon class="normal" [icon]="dice"></fa-icon></mat-icon>
+      <span class="option">normal roll</span>
+    </li>
+    <li>
+      <mat-icon><fa-icon class="advantage" [icon]="dice"></fa-icon></mat-icon>
+      <span class="option">advantage roll</span>
+    </li>
+    <li>
+      <mat-icon><fa-icon class="disadvantage" [icon]="dice"></fa-icon></mat-icon>
+      <span class="option">disadvantage roll</span>
+    </li>
+  </ul>
+  <p>
+    At the initiive order screen, you can also click this icon to re-roll dice for individual combtants.
+  </p>
+</mat-card>
+<mat-card>
   <mat-card-title>FAQs</mat-card-title>
   <mat-card-subtitle>How are Ties Broken?</mat-card-subtitle>
   <p>Ties are broken like this:</p>

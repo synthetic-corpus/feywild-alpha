@@ -13,7 +13,7 @@ import { CampaignService } from 'src/app/services/campaign.service';
 })
 export class NewencounterComponent implements OnInit, OnDestroy {
 
-  web_npcs: {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[] = []
+  web_npcs: {web_element_id: string, name: string, initiative: number, ac?: number, roll_method?: string, notes?: string}[] = []
 
   encounterForm: FormGroup
   constructor(
