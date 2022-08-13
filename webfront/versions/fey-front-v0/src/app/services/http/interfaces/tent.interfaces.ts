@@ -7,7 +7,8 @@ export interface NewTent {
   spell_dc?: number,
   passive_perception: number,
   ac: number,
-  notes?: string
+  notes?: string,
+  roll_method: string
 }
 
 export interface TentHttp extends NewTent {
@@ -22,5 +23,6 @@ export interface TentPatch {
   spell_dc?: number,
   passive_perception?: number,
   ac?: number,
-  notes?: string
+  notes?: string,
+  roll_method?: string
 }

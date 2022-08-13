@@ -7,3 +7,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .longButton {
   width: 100%;
 }
+
+.option {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.advantage {
+  color: green
+}
+
+.disadvantage {
+  color: red
+}
+
+.normal {
+  color: black
+}

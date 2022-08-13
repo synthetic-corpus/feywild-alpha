@@ -3,6 +3,7 @@ import { TentHttpService } from 'src/app/services/http/tent-http.service';
 import { NewTent} from 'src/app/services/http/interfaces/tent.interfaces'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
+import { faDiceD20 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-newtent',
@@ -18,7 +19,8 @@ export class NewTentComponent implements OnInit {
     private tentHttpservice: TentHttpService,
     private sanitize: SanitizeStringsService
   ) { }
-
+  roll_method = 'normal'
+  dice = faDiceD20
   newPlayerCharacter: FormGroup
   ngOnInit(): void {
     this.newPlayerCharacter = new FormGroup({
@@ -79,7 +81,8 @@ export class NewTentComponent implements OnInit {
       character: characterName,
       initiative: this.newPlayerCharacter.value.initiativeFC,
       ac: this.newPlayerCharacter.value.acFC,
-      passive_perception: this.newPlayerCharacter.value.passive_perceptionFC
+      passive_perception: this.newPlayerCharacter.value.passive_perceptionFC,
+      roll_method: this.roll_method
     }
 
     if (this.newPlayerCharacter.value.notesFC){

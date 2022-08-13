@@ -2,6 +2,8 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TentWeb } from '../../../interfaces/tent.interface'
+import { faDiceD20 } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-playercharacter',
@@ -22,9 +24,11 @@ export class PlayercharacterComponent implements OnInit {
   @Input() spell_dc: number
   @Input() ac!: number
   @Input() notes!: string
+  @Input() roll_method!: string
 
   editting: boolean = false
   playerForm: FormGroup
+  dice = faDiceD20
 
   constructor(
     private sanitizeString: SanitizeStringsService
@@ -38,7 +42,8 @@ export class PlayercharacterComponent implements OnInit {
       'passive_perceptionFC': new FormControl(this.passive_perception),
       'spell_dcFC': new FormControl(this.spell_dc),
       'armorFC': new FormControl(this.ac),
-      'notesFC': new FormControl(this.notes)
+      'notesFC': new FormControl(this.notes),
+      'rollFC': new FormControl(this.roll_method)
     })
   }
 
@@ -60,13 +65,35 @@ export class PlayercharacterComponent implements OnInit {
       passive_perception: this.passive_perception,
       spell_dc: this.spell_dc,
       ac: this.ac,
-      notes: this.notes
+      notes: this.notes,
+      roll_method: this.roll_method
     })
     this.toggleEdit()
+  }
+
+  onChangeRoll(method: string){
+    const methods = ['normal','advantage','disadvantage']
+    if (methods.includes(method)){
+      this.roll_method = method
+      this.playerChanged.emit({
+        _id: this._id,
+        _user_id: this._user_id,
+        web_element_id: this.web_element_id,
+        player: this.player,
+        character: this.character,
+        initiative: this.initiative,
+        passive_perception: this.passive_perception,
+        spell_dc: this.spell_dc,
+        ac: this.ac,
+        notes: this.notes,
+        roll_method: this.roll_method
+      })
+    }
   }
 
   onDeleteMe(){
     this.playerDeleted.emit(this.web_element_id)
   }
+
 
 }
