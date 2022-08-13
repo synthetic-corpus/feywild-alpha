@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angu
 import { WebidsService } from 'src/app/services/webids.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
+import { faDiceD20 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-npcadd',
@@ -13,12 +14,14 @@ export class NpcaddComponent implements OnInit, OnDestroy {
   @Output() cancelNpc = new EventEmitter<string>()
 
   @Input() maxed_out!: boolean
+  dice = faDiceD20
 
   web_element_id: string = this.webId.generate()
   name: string
   initiative: number
   armor: number
   notes: string
+  roll_method: string = 'normal'
 
   npcForm: FormGroup
 

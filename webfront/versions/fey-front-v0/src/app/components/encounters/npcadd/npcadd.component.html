@@ -16,6 +16,14 @@
       <input matInput formControlName="armorFC" type="number" [(ngModel)]="armor">
     </mat-form-field>
     <mat-form-field appearance="fill">
+      <mat-label>Initiative Roll Method</mat-label>
+      <mat-select matNativeControl required [(value)]="roll_method">
+        <mat-option value="normal"><fa-icon [icon]="dice" class="normal"></fa-icon><span class="option">Normal</span></mat-option>
+        <mat-option value="advantage"><fa-icon [icon]="dice" class="advantage"></fa-icon><span class="option">Advantage</span></mat-option>
+        <mat-option value="disadvantage"><fa-icon [icon]="dice" class="disadvantage"></fa-icon><span class="option">Disadvantage</span></mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>Notes</mat-label>
       <textarea matInput formControlName="notesFC"></textarea>
       <mat-error *ngIf="!npcForm.get('notesFC').valid && npcForm.get('notesFC').touched">Must have Letters!</mat-error>

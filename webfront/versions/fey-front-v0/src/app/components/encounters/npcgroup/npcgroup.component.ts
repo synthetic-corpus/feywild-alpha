@@ -14,7 +14,7 @@ export class NpcgroupComponent implements OnInit, OnDestroy {
   // Reactive Form that will have a list of NPCs to battle.
   db_id!: string // Will be the DB's unique identifier or "new"
   encounter_name: string = 'My Next Encounter'
-  web_npcs: {web_element_id: string, name: string, initiative: number, ac?: number, notes?: string}[] =[]
+  web_npcs: {web_element_id: string, name: string, initiative: number, ac?: number, roll_method?:string, notes?: string}[] =[]
 
   constructor(
     private route: ActivatedRoute,

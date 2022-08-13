@@ -1,13 +1,15 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
+import { faDiceD20 } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-npc',
   templateUrl: './npc.component.html',
   styleUrls: ['./npc.component.css']
 })
 export class NpcComponent implements OnInit {
-  @Output() npcChanged = new EventEmitter<{web_element_id: string, name: string, initiative: number, armor?: number, notes?: string}>()
+  @Output() npcChanged = new EventEmitter<{web_element_id: string, name: string, initiative: number, armor?: number, roll_method?: string, notes?: string}>()
   @Output() npcDuplicated = new EventEmitter<string>()
   @Output() npcDeleted = new EventEmitter<string>()
 
@@ -17,7 +19,9 @@ export class NpcComponent implements OnInit {
   @Input() initiative!: number
   @Input() armor!: number
   @Input() notes!: string
+  @Input() roll_method!: string
 
+  dice = faDiceD20
   npcForm: FormGroup
 
   editting: boolean = false
@@ -48,12 +52,30 @@ export class NpcComponent implements OnInit {
       name: this.name,
       initiative: this.initiative,
       armor: this.armor,
-      notes: this.notes
+      notes: this.notes,
+      roll_method: this.roll_method
     })
   }
 
   onDeleteMe(){
     this.npcDeleted.emit(this.web_element_id)
+  }
+
+  onChangeRoll(method: string){
+
+    const methods = ['normal','advantage','disadvantage']
+    if (methods.includes(method)){
+      this.roll_method = method
+      this.npcChanged.emit({
+        web_element_id: this.web_element_id,
+        name: this.name,
+        initiative: this.initiative,
+        armor: this.armor,
+        notes: this.notes,
+        roll_method: this.roll_method
+      })
+    }
+
   }
 
   onDuplicateMe(){
