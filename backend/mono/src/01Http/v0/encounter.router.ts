@@ -22,7 +22,7 @@ router.get('/:id', requireAuth, async (req: Request, res: Response) => {
     const id = req.params.id
     const user_id = req.user_id
     const reply: HttpReplyMessage = await EncounterLogic.getEncounter(user_id,id)
-    return res.status(reply.code).send(reply)
+    return res.status(reply.code).set('Cache-Control','no-store').send(reply)
 })
 
 router.get('/', requireAuth, async (req: Request, res: Response) => {
