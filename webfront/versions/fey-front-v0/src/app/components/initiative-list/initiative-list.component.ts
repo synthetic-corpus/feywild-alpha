@@ -8,6 +8,7 @@ import { WebidsService } from 'src/app/services/webids.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SanitizeStringsService } from 'src/app/services/sanitize-strings.service';
 import { DiceTumble } from './dicetumble.class';
+import { Npcs } from 'src/app/services/http/interfaces/encounter.interfaces';
 @Component({
   selector: 'app-initiative-list',
   templateUrl: './initiative-list.component.html',
@@ -46,8 +47,8 @@ export class InitiativeListComponent implements OnInit, OnDestroy {
           (reply: HttpReplyMessage)=>{
             // get the monsters. Roll their init. Add to Array.
             reply.data.npcs.forEach(
-              (npc: {name: string, initiative: number, ac?: number, notes?: number}) => {
-                this.init_list.push(new DiceTumble(this.webId.generate(),npc.initiative,npc.name))
+              (npc: Npcs) => {
+                this.init_list.push(new DiceTumble(this.webId.generate(),npc.initiative,npc.name,npc.roll_method))
                 this.init_list.sort((a,b) => {return b.init - a.init})
               }
             )
@@ -60,7 +61,7 @@ export class InitiativeListComponent implements OnInit, OnDestroy {
             // Get the players. Roll their init. Add To array.
             reply.data.forEach(
               (element: TentHttp) => {
-                this.init_list.push(new DiceTumble(this.webId.generate(),element.initiative,element.character))
+                this.init_list.push(new DiceTumble(this.webId.generate(),element.initiative,element.character,element.roll_method))
                 this.init_list.sort((a,b) => {return b.init - a.init})
               }
             )

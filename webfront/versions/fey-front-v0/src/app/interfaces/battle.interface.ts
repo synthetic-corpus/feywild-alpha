@@ -7,7 +7,8 @@ export interface Character {
 export interface NPC {
   name: string,
   ac?: number,
-  notes?: string
+  notes?: string,
+  roll_method?: string
 }
 
 export interface PC {

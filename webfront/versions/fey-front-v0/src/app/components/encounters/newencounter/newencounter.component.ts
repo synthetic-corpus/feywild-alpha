@@ -85,7 +85,7 @@ export class NewencounterComponent implements OnInit, OnDestroy {
           console.log(res.body)
         }
       )
-      this.router.navigate(['/encounters'])
+      this.router.navigate(['/encounters'],{replaceUrl: true})
   }
 
   ngOnDestroy(): void {

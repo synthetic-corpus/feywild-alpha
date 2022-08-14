@@ -1,8 +1,9 @@
-interface Npcs {
+export interface Npcs {
   name: string,
   initiative: number,
   ac?: number,
-  notes?: string
+  notes?: string,
+  roll_method?: string
 }
 
 export interface EncounterHttp {

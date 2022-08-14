@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { EncounterHttpService } from 'src/app/services/http/encounter-http.service';
 import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
+import { Npcs } from 'src/app/services/http/interfaces/encounter.interfaces';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { HttpReplyMessage } from 'src/app/interfaces/replies.interface';
 })
 export class EncountersComponent implements OnInit {
 
-  myEncounters: {_id: string, name:string, npcs: any[]}[] = []
+  myEncounters: {_id: string, name:string, npcs: Npcs[]}[] = []
 
   constructor(
     private encountersHttp: EncounterHttpService
@@ -20,13 +21,13 @@ export class EncountersComponent implements OnInit {
     this.encountersHttp.retrieveEncounters()
       .subscribe(
         (reply: HttpReplyMessage) => {
-          this.myEncounters = reply.data as {_id: string, name:string, npcs: any[]}[]
+          this.myEncounters = reply.data as {_id: string, name:string, npcs: Npcs[]}[]
         },
         (error) =>{
           console.log(error)
         }
       )
-    console.log("initial data ",this.myEncounters)
+    console.log("encounters loaded at ngOnInit()")
   }
 
   onDeleteEncounter(db_id: string){

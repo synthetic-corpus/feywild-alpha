@@ -20,7 +20,7 @@ export class EncounterHttpService {
   }
 
   retrieveEncounters(){
-    return this.http.get(`${env.auth.apiUri}/encounter/`, CORS)
+    return this.http.get(`${env.auth.apiUri}/encounter`, CORS)
   }
 
   updateEncounter(id: string, patch: EncounterPatch){
